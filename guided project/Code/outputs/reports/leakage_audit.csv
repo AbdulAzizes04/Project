@@ -1,0 +1,12 @@
+Feature,Source,Available Before Authorization?,Potential Leakage?,Reason,Action
+step,Authorization-Time Transaction Context,YES,NO,Parameter observable at payment submission time.,KEEP
+type,Authorization-Time Transaction Context,YES,NO,Parameter observable at payment submission time.,KEEP
+amount,Authorization-Time Transaction Context,YES,NO,Parameter observable at payment submission time.,KEEP
+nameOrig,Transaction Identifier,YES,POSSIBLE (OVERFITTING),High-cardinality nominal ID. Not a direct target leak but causes memorization if unencoded.,EXTRACT_FEATURES_THEN_DROP_RAW_ID
+oldbalanceOrg,Authorization-Time Transaction Context,YES,NO,Parameter observable at payment submission time.,KEEP
+newbalanceOrig,Core Settlement Accounting,NO,YES (CRITICAL),Post-settlement account state. Reveals whether funds left origin/reached destination.,REMOVE
+nameDest,Transaction Identifier,YES,POSSIBLE (OVERFITTING),High-cardinality nominal ID. Not a direct target leak but causes memorization if unencoded.,EXTRACT_FEATURES_THEN_DROP_RAW_ID
+oldbalanceDest,Authorization-Time Transaction Context,YES,NO,Parameter observable at payment submission time.,KEEP
+newbalanceDest,Core Settlement Accounting,NO,YES (CRITICAL),Post-settlement account state. Reveals whether funds left origin/reached destination.,REMOVE
+isFraud,Dataset Target Label,NO,TARGET,Ground truth classification target label.,ISOLATE_AS_TARGET
+isFlaggedFraud,Downstream Anti-Fraud Resolution,NO,YES,Downstream rule engine flag assigned during/after fraud processing.,REMOVE

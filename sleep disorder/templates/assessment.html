@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}Sleep Health Assessment - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <!-- Header Card -->
+            <div class="custom-card p-4 bg-white mb-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                    <div>
+                        <span class="badge bg-primary-subtle text-primary fw-semibold mb-1">Clinical Screening Intake</span>
+                        <h2 class="fw-bold text-dark mb-1">Sleep & Lifestyle Health Assessment</h2>
+                        <p class="text-muted small mb-0">Complete the parameters below to evaluate sleep disorder risk and compute SHAP feature attributions.</p>
+                    </div>
+                    <!-- Quick Load Presets for Academic Viva / Demo -->
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-magic me-1"></i> Demo Presets
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                            <li><button class="dropdown-item" type="button" onclick="loadPreset('healthy')"><i class="fas fa-check-circle text-success me-2"></i> Healthy Baseline Profile</button></li>
+                            <li><button class="dropdown-item" type="button" onclick="loadPreset('insomnia')"><i class="fas fa-exclamation-circle text-warning me-2"></i> High-Stress Insomnia Profile</button></li>
+                            <li><button class="dropdown-item" type="button" onclick="loadPreset('apnea')"><i class="fas fa-lungs text-danger me-2"></i> High BP Sleep Apnea Profile</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <form method="POST" action="{{ url_for('prediction.assessment') }}" class="custom-card p-4 p-md-5 bg-white mb-4">
+                <!-- SECTION 1: PERSONAL PROFILE -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                        <i class="fas fa-user me-2"></i> 1. Personal Demographics
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="Age" class="form-label">Age (Years) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="Age" name="Age" min="18" max="100" value="{{ form_data.get('Age', 35) }}" required>
+                            <div class="form-text">Valid range: 18 - 100</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Gender" class="form-label">Gender <span class="text-danger">*</span></label>
+                            <select class="form-select" id="Gender" name="Gender" required>
+                                <option value="Male" {% if form_data.get('Gender') == 'Male' %}selected{% endif %}>Male</option>
+                                <option value="Female" {% if form_data.get('Gender') == 'Female' %}selected{% endif %}>Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Occupation" class="form-label">Occupation <span class="text-danger">*</span></label>
+                            <select class="form-select" id="Occupation" name="Occupation" required>
+                                <option value="Software Engineer" selected>Software Engineer</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Nurse">Nurse</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Engineer">Engineer</option>
+                                <option value="Accountant">Accountant</option>
+                                <option value="Lawyer">Lawyer</option>
+                                <option value="Scientist">Scientist</option>
+                                <option value="Salesperson">Salesperson</option>
+                                <option value="Sales Representative">Sales Representative</option>
+                                <option value="Manager">Manager</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: BODY & CARDIOVASCULAR HEALTH -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                        <i class="fas fa-heart-pulse me-2"></i> 2. Body & Cardiovascular Metrics
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="BMI Category" class="form-label">BMI Category <span class="text-danger">*</span></label>
+                            <select class="form-select" id="BMI_Category" name="BMI Category" required>
+                                <option value="Normal">Normal Weight (18.5 - 24.9)</option>
+                                <option value="Overweight">Overweight (25.0 - 29.9)</option>
+                                <option value="Obese">Obese (30.0+)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Systolic_BP" class="form-label">Systolic BP (mmHg) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="Systolic_BP" name="Systolic_BP" min="70" max="220" value="{{ form_data.get('Systolic_BP', 120) }}" required>
+                            <div class="form-text">Upper reading (e.g. 120)</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Diastolic_BP" class="form-label">Diastolic BP (mmHg) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="Diastolic_BP" name="Diastolic_BP" min="40" max="140" value="{{ form_data.get('Diastolic_BP', 80) }}" required>
+                            <div class="form-text">Lower reading (e.g. 80)</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Heart Rate" class="form-label">Resting Heart Rate (bpm) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="Heart_Rate" name="Heart Rate" min="40" max="160" value="{{ form_data.get('Heart Rate', 70) }}" required>
+                            <div class="form-text">Resting pulse (normal: 60 - 100 bpm)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: SLEEP PATTERNS -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                        <i class="fas fa-bed me-2"></i> 3. Sleep Architecture
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="Sleep Duration" class="form-label">Sleep Duration (Hours/Night) <span class="text-danger">*</span></label>
+                            <input type="number" step="0.1" class="form-control" id="Sleep_Duration" name="Sleep Duration" min="3.0" max="14.0" value="{{ form_data.get('Sleep Duration', 7.2) }}" required>
+                            <div class="form-text">Average nightly hours of sleep</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Quality_of_Sleep" class="form-label d-flex justify-content-between">
+                                <span>Quality of Sleep (1-10) <span class="text-danger">*</span></span>
+                                <span class="badge bg-primary px-2" id="Quality_of_Sleep_val">7</span>
+                            </label>
+                            <input type="range" class="form-range" id="Quality_of_Sleep" name="Quality of Sleep" min="1" max="10" value="{{ form_data.get('Quality of Sleep', 7) }}">
+                            <div class="d-flex justify-content-between small text-muted">
+                                <span>1 (Very Poor)</span>
+                                <span>5 (Fair)</span>
+                                <span>10 (Excellent)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: LIFESTYLE & DAILY HABITS -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                        <i class="fas fa-running me-2"></i> 4. Lifestyle & Daily Habits
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="Stress_Level" class="form-label d-flex justify-content-between">
+                                <span>Daily Stress Level (1-10) <span class="text-danger">*</span></span>
+                                <span class="badge bg-danger px-2" id="Stress_Level_val">5</span>
+                            </label>
+                            <input type="range" class="form-range" id="Stress_Level" name="Stress Level" min="1" max="10" value="{{ form_data.get('Stress Level', 5) }}">
+                            <div class="d-flex justify-content-between small text-muted">
+                                <span>1 (Very Relaxed)</span>
+                                <span>5 (Moderate)</span>
+                                <span>10 (Severe Stress)</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Physical Activity Level" class="form-label">Physical Activity (Minutes/Day) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="Physical_Activity_Level" name="Physical Activity Level" min="0" max="300" value="{{ form_data.get('Physical Activity Level', 60) }}" required>
+                            <div class="form-text">Aerobic exercise or active movement per day</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Daily Steps" class="form-label">Daily Steps <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="Daily_Steps" name="Daily Steps" min="500" max="30000" value="{{ form_data.get('Daily Steps', 7000) }}" required>
+                            <div class="form-text">Average step count recorded by pedometer / phone</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="disclaimer-banner mb-4">
+                    <small>
+                        <i class="fas fa-info-circle me-1"></i> <b>Screening Disclaimer:</b> All data entered will be preprocessed and evaluated through the trained Machine Learning and SHAP explainability pipelines for educational decision-support.
+                    </small>
+                </div>
+
+                <button type="submit" class="btn btn-primary-custom btn-lg w-100 py-3 shadow">
+                    <i class="fas fa-microchip me-2"></i> Analyze Sleep Health & Generate XAI Insights
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function loadPreset(type) {
+    if (type === 'healthy') {
+        document.getElementById('Age').value = 32;
+        document.getElementById('Gender').value = 'Male';
+        document.getElementById('Occupation').value = 'Engineer';
+        document.getElementById('BMI_Category').value = 'Normal';
+        document.getElementById('Systolic_BP').value = 118;
+        document.getElementById('Diastolic_BP').value = 76;
+        document.getElementById('Heart_Rate').value = 68;
+        document.getElementById('Sleep_Duration').value = 7.8;
+        document.getElementById('Quality_of_Sleep').value = 8;
+        document.getElementById('Quality_of_Sleep_val').textContent = 8;
+        document.getElementById('Stress_Level').value = 3;
+        document.getElementById('Stress_Level_val').textContent = 3;
+        document.getElementById('Physical_Activity_Level').value = 75;
+        document.getElementById('Daily_Steps').value = 8000;
+    } else if (type === 'insomnia') {
+        document.getElementById('Age').value = 44;
+        document.getElementById('Gender').value = 'Female';
+        document.getElementById('Occupation').value = 'Teacher';
+        document.getElementById('BMI_Category').value = 'Overweight';
+        document.getElementById('Systolic_BP').value = 130;
+        document.getElementById('Diastolic_BP').value = 85;
+        document.getElementById('Heart_Rate').value = 80;
+        document.getElementById('Sleep_Duration').value = 5.2;
+        document.getElementById('Quality_of_Sleep').value = 4;
+        document.getElementById('Quality_of_Sleep_val').textContent = 4;
+        document.getElementById('Stress_Level').value = 8;
+        document.getElementById('Stress_Level_val').textContent = 8;
+        document.getElementById('Physical_Activity_Level').value = 30;
+        document.getElementById('Daily_Steps').value = 4500;
+    } else if (type === 'apnea') {
+        document.getElementById('Age').value = 52;
+        document.getElementById('Gender').value = 'Male';
+        document.getElementById('Occupation').value = 'Doctor';
+        document.getElementById('BMI_Category').value = 'Obese';
+        document.getElementById('Systolic_BP').value = 140;
+        document.getElementById('Diastolic_BP').value = 92;
+        document.getElementById('Heart_Rate').value = 85;
+        document.getElementById('Sleep_Duration').value = 6.0;
+        document.getElementById('Quality_of_Sleep').value = 5;
+        document.getElementById('Quality_of_Sleep_val').textContent = 5;
+        document.getElementById('Stress_Level').value = 7;
+        document.getElementById('Stress_Level_val').textContent = 7;
+        document.getElementById('Physical_Activity_Level').value = 35;
+        document.getElementById('Daily_Steps').value = 5000;
+    }
+}
+</script>
+{% endblock %}

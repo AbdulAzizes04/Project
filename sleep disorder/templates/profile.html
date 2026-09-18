@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="custom-card p-4 p-md-5 bg-white">
+                <div class="d-flex align-items-center gap-3 mb-4 border-bottom pb-3">
+                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 64px; height: 64px; font-size: 1.8rem;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold mb-0 text-dark">{{ user.name }}</h4>
+                        <span class="badge bg-primary-subtle text-primary text-uppercase">{{ user.role }}</span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="small text-muted fw-bold">EMAIL ADDRESS</label>
+                    <div class="fw-semibold text-dark">{{ user.email }}</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="small text-muted fw-bold">ACCOUNT REGISTERED</label>
+                    <div class="text-dark">{{ user.created_at.strftime('%B %d, %Y at %H:%M') if user.created_at else 'N/A' }}</div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="small text-muted fw-bold">TOTAL ASSESSMENTS COMPLETED</label>
+                    <div class="fw-semibold text-dark">{{ user.assessments|length }} assessment(s)</div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('user.dashboard') }}" class="btn btn-outline-primary flex-fill">
+                        <i class="fas fa-columns me-1"></i> Dashboard
+                    </a>
+                    <a href="{{ url_for('prediction.assessment') }}" class="btn btn-primary-custom flex-fill">
+                        <i class="fas fa-stethoscope me-1"></i> New Assessment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

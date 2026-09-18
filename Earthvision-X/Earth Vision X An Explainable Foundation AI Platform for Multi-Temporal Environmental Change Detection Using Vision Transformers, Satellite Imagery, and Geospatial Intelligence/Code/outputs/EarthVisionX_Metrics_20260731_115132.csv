@@ -1,0 +1,23 @@
+Metric Category,Parameter,Value,Notes / Sub-text
+Metadata,Timestamp,2026-07-31 11:51:32 UTC,Report Generation
+Metadata,Model Architecture,Swin-CD,Vision Transformer
+Inference,Primary Change Event,Deforestation,High Confidence
+Inference,Confidence Score,95.00%,Probability Density
+Inference,Affected Area (sq km),2281.9800,Spatial Measure
+Inference,Affected Area (%),14.51%,Scene Frame Coverage
+Inference,Inference Time (sec),0.1200,Execution Speed
+Model Performance,Accuracy,96.4%,IEEE Benchmark
+Model Performance,Precision,94.2%,Reliability
+Model Performance,Recall,95.8%,Sensitivity
+Model Performance,F1 Score,95.0%,Harmonic Mean
+Model Performance,Mean IoU,88.6%,Jaccard Overlap
+Model Performance,Kappa Score,0.924,Inter-rater Agreement
+Model Performance,ROC AUC,0.985,Discrimination Metric
+Weather Intelligence,Rainfall Probability,84.2%,Convective Cell
+Weather Intelligence,Wind Speed,42.8 km/h,Vector 240° SW
+Climate Monitoring,SST Anomaly,+1.85 °C,30yr Baseline
+Agriculture,Mean NDVI,0.82,Peak Vigour
+Agriculture,Crop Yield Estimate,4.8 Tons/Ha,Yield Model
+Forestry,Canopy Loss,24.6 sq km,Deforestation Frontier
+Disaster Monitoring,Flood Inundation Area,18.4 sq km,Sentinel-1 SAR
+Disaster Monitoring,Active Thermal Fires,42 Hotspots,VIIRS / Sentinel-2

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.env
+*.sqlite3
+*.db
+
+# Node / React
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vscode/
+.idea/
+
+# ML Artifacts (temporary cache)
+backend/artifacts/cache/

@@ -1,0 +1,4 @@
+transaction_id,risk_score,risk_level,top_risk_factor,intervention
+TXN-1789635108259,52,MEDIUM,Amount / Payee Novelty,Contextual Warning & 2FA Challenge
+TXN-1789635108267,36,MEDIUM,Amount / Payee Novelty,Contextual Warning & 2FA Challenge
+TXN-1789635108275,56,MEDIUM,Amount / Payee Novelty,Contextual Warning & 2FA Challenge

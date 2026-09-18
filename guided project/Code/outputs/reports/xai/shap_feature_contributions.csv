@@ -1,0 +1,20 @@
+feature,feature_name,actual_value,shap_value,impact,abs_impact,contribution_pct,direction,direction_label,impact_level
+log_amount,Log Amount,$3.38,-0.0,-0.0,1.3157894738681288e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+oldbalanceOrg,Sender Old Balance,$4.88,-0.0,-0.0,1.3157894738681288e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+is_high_portion_of_balance,Is High Portion Of Balance,$4.21,-0.0,-0.0,1.3157894738681288e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+velocity_proxy_1h,Velocity Proxy 1H,8 txns,-0.0,-0.0,1.3157894738681288e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+is_weekend,Is Weekend,-0.5171,-0.0,-0.0,1.3157894737220468e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+is_business_hours,Is Business Hours,-0.7948,-0.0,-0.0,1.3157894737220468e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+type_CASH_OUT,Type: Cash Out,-0.5776,-0.0,-0.0,1.3157894737220468e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+type_PAYMENT,Type: Payment,-0.7412,-0.0,-0.0,1.3157894737220468e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+dest_is_merchant,Dest Is Merchant,-0.7412,-0.0,-0.0,1.3157894737220468e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+type_DEBIT,Type: Debit,-0.2922,-0.0,-0.0,1.3157894736490059e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+log_oldbalanceOrg,Log Oldbalanceorg,$1.81,-0.0,-0.0,1.315789473575965e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+amount_to_oldbalance_ratio,Amount To Oldbalance Ratio,$1.22,-0.0,-0.0,1.315789473575965e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+hour,Hour,-1.3896,-0.0,-0.0,1.315789473575965e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+day_of_week,Day Of Week,-1.4277,-0.0,-0.0,1.315789473575965e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+is_late_night,Late Night Flag,1.7644,-0.0,-0.0,1.315789473575965e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+type_TRANSFER,Type: Transfer,1.7589,-0.0,-0.0,1.315789473575965e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+amount,Transaction Amount,$36.99,-0.0,-0.0,1.3157894703621615e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+behavioral_deviation_score,Behavioral Deviation Score,64,-0.0,-0.0,1.3157894703621615e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low
+amount_z_score,Amount Z Score,$33.04,-0.0,-0.0,1.3157894703621615e-07,3.76,🟢 Decreases Risk (-),Decreases Risk,Low

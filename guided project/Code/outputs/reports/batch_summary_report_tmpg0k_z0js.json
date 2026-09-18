@@ -1,0 +1,9 @@
+{
+    "total_transactions": 3,
+    "flagged_scam_count": 0,
+    "flagged_scam_rate_pct": 0.0,
+    "avg_risk_score": 48.0,
+    "total_latency_sec": 0.068,
+    "prediction_csv": "D:\\projects\\guided project\\Code\\outputs\\reports\\batch_predictions_tmpg0k_z0js.csv",
+    "risk_csv": "D:\\projects\\guided project\\Code\\outputs\\reports\\batch_risk_scores_tmpg0k_z0js.csv"
+}

@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: ai_advisor_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  ml-service:
+    build: ./ml-service
+    container_name: ai_advisor_ml
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./datasets:/datasets
+      - ./models:/models
+      - ./reports:/reports
+    environment:
+      - PORT=8000
+
+  server:
+    build: ./server
+    container_name: ai_advisor_api
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+      - ml-service
+    volumes:
+      - ./datasets:/datasets
+      - ./models:/models
+      - ./reports:/reports
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/ai_advisor
+      - ML_SERVICE_URL=http://ml-service:8000
+      - JWT_SECRET=docker_production_session_secret_key_change_me
+      - GEMINI_API_KEY=
+      - OPENAI_API_KEY=
+
+  client:
+    build: ./client
+    container_name: ai_advisor_web
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+
+volumes:
+  mongo_data:

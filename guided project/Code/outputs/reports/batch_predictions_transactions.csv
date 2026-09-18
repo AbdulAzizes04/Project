@@ -1,0 +1,9 @@
+transaction_id,timestamp,amount,old_balance_orig,new_balance_orig,old_balance_dest,new_balance_dest,transaction_type,device_type,location,is_scam,scam_probability,risk_score,risk_level,predicted_scam
+TXN10001,2026-08-01 10:15:30,250.0,5000.0,4750.0,1200.0,1450.0,TRANSFER,Mobile_Android,New York,0,0.0,10,LOW,0
+TXN10002,2026-08-01 10:18:12,15000.0,15000.0,0.0,0.0,15000.0,PAYMENT,Web_Browser,Unknown_IP,1,0.0,33,LOW,0
+TXN10003,2026-08-01 11:05:45,45.5,1200.0,1154.5,550.0,595.5,PAYMENT,Mobile_iOS,Los Angeles,0,0.0,10,LOW,0
+TXN10004,2026-08-01 11:42:00,9800.0,10000.0,200.0,100.0,9900.0,TRANSFER,Mobile_Android,Chicago,1,0.0,10,LOW,0
+TXN10005,2026-08-01 12:10:19,120.0,3400.0,3280.0,8900.0,9020.0,CASH_OUT,ATM,Houston,0,0.0,10,LOW,0
+TXN10006,2026-08-01 13:22:50,45000.0,45000.0,0.0,0.0,45000.0,TRANSFER,Web_Browser,Foreign_Proxy,1,0.0,33,LOW,0
+TXN10007,2026-08-01 14:01:11,85.0,670.0,585.0,12000.0,12085.0,PAYMENT,Mobile_iOS,San Francisco,0,0.0,10,LOW,0
+TXN10008,2026-08-01 15:30:04,12000.0,12500.0,500.0,0.0,12000.0,TRANSFER,Mobile_Android,Miami,1,0.0,10,LOW,0

@@ -1,0 +1,4 @@
+task_id,title,location,priority,assigned_to,status,due_date
+TSK-301,Column C-03 Concrete Pouring Missing,3rd Floor North-East Corner,Critical,Structural Masonry Team,Open,2026-08-04
+TSK-302,Window W-02 Saw Cutout Required,3rd Floor Master Suite,High,Brick Masonry Sub-contractor,Open,2026-08-03
+TSK-303,HVAC Duct D-03 Hanger Bracket Install,3rd Floor Corridor,Medium,MEP Services,In Progress,2026-08-05

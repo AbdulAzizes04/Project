@@ -1,0 +1,4 @@
+transaction_id,customer_id,amount,type,model_score,anomaly_score,behavioral_score,beneficiary_score,device_score,location_score,temporal_score,velocity_score,risk_score,risk_level,top_risk_factor,intervention,latency_ms
+TXN-1789635108259,C-0,50.0,PAYMENT,0.9,50.6,24.0,65.0,10.0,10.0,10.0,10.0,52,MEDIUM,Amount / Payee Novelty,Contextual Warning & 2FA Challenge,9.03
+TXN-1789635108267,C-1,80000.0,TRANSFER,2.1,77.1,59.0,95.0,10.0,10.0,10.0,10.0,36,MEDIUM,Amount / Payee Novelty,Contextual Warning & 2FA Challenge,8.1
+TXN-1789635108275,C-2,200.0,CASH_OUT,1.0,52.5,24.0,65.0,10.0,10.0,10.0,10.0,56,MEDIUM,Amount / Payee Novelty,Contextual Warning & 2FA Challenge,7.85

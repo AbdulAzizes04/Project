@@ -1,0 +1,328 @@
+{
+    "best_model_name": "Random Forest",
+    "selection_metric": "Macro F1-Score",
+    "best_f1_macro": 0.9009304871373837,
+    "target_mapping": {
+        "None": 0,
+        "Insomnia": 1,
+        "Sleep Apnea": 2
+    },
+    "reverse_target_mapping": {
+        "0": "None",
+        "1": "Insomnia",
+        "2": "Sleep Apnea"
+    },
+    "feature_count": 23,
+    "models": {
+        "Logistic Regression": {
+            "accuracy": 0.8933333333333333,
+            "precision_macro": 0.8682983682983684,
+            "precision_weighted": 0.9167365967365968,
+            "recall_macro": 0.8821969696969697,
+            "recall_weighted": 0.8933333333333333,
+            "f1_macro": 0.8663324979114453,
+            "f1_weighted": 0.8985797827903091,
+            "roc_auc": 0.9490243260930796,
+            "confusion_matrix": [
+                [
+                    40,
+                    0,
+                    4
+                ],
+                [
+                    0,
+                    12,
+                    3
+                ],
+                [
+                    0,
+                    1,
+                    15
+                ]
+            ],
+            "classification_report": {
+                "None": {
+                    "precision": 1.0,
+                    "recall": 0.9090909090909091,
+                    "f1-score": 0.9523809523809523,
+                    "support": 44.0
+                },
+                "Insomnia": {
+                    "precision": 0.9230769230769231,
+                    "recall": 0.8,
+                    "f1-score": 0.8571428571428571,
+                    "support": 15.0
+                },
+                "Sleep Apnea": {
+                    "precision": 0.6818181818181818,
+                    "recall": 0.9375,
+                    "f1-score": 0.7894736842105263,
+                    "support": 16.0
+                },
+                "accuracy": 0.8933333333333333,
+                "macro avg": {
+                    "precision": 0.8682983682983684,
+                    "recall": 0.8821969696969697,
+                    "f1-score": 0.8663324979114453,
+                    "support": 75.0
+                },
+                "weighted avg": {
+                    "precision": 0.9167365967365968,
+                    "recall": 0.8933333333333333,
+                    "f1-score": 0.8985797827903091,
+                    "support": 75.0
+                }
+            },
+            "cv_f1_mean": 0.8893294484374057,
+            "cv_f1_std": 0.01621357181004067
+        },
+        "Decision Tree": {
+            "accuracy": 0.9066666666666666,
+            "precision_macro": 0.8653846153846154,
+            "precision_weighted": 0.9158974358974359,
+            "recall_macro": 0.8751262626262627,
+            "recall_weighted": 0.9066666666666666,
+            "f1_macro": 0.8652639350313769,
+            "f1_weighted": 0.9079438907345883,
+            "roc_auc": 0.9085370609687177,
+            "confusion_matrix": [
+                [
+                    42,
+                    1,
+                    1
+                ],
+                [
+                    0,
+                    11,
+                    4
+                ],
+                [
+                    0,
+                    1,
+                    15
+                ]
+            ],
+            "classification_report": {
+                "None": {
+                    "precision": 1.0,
+                    "recall": 0.9545454545454546,
+                    "f1-score": 0.9767441860465116,
+                    "support": 44.0
+                },
+                "Insomnia": {
+                    "precision": 0.8461538461538461,
+                    "recall": 0.7333333333333333,
+                    "f1-score": 0.7857142857142857,
+                    "support": 15.0
+                },
+                "Sleep Apnea": {
+                    "precision": 0.75,
+                    "recall": 0.9375,
+                    "f1-score": 0.8333333333333334,
+                    "support": 16.0
+                },
+                "accuracy": 0.9066666666666666,
+                "macro avg": {
+                    "precision": 0.8653846153846154,
+                    "recall": 0.8751262626262627,
+                    "f1-score": 0.8652639350313769,
+                    "support": 75.0
+                },
+                "weighted avg": {
+                    "precision": 0.9158974358974359,
+                    "recall": 0.9066666666666666,
+                    "f1-score": 0.9079438907345883,
+                    "support": 75.0
+                }
+            },
+            "cv_f1_mean": 0.8558846756226149,
+            "cv_f1_std": 0.037466959580993026
+        },
+        "Support Vector Machine": {
+            "accuracy": 0.9066666666666666,
+            "precision_macro": 0.876984126984127,
+            "precision_weighted": 0.9223809523809524,
+            "recall_macro": 0.8751262626262627,
+            "recall_weighted": 0.9066666666666666,
+            "f1_macro": 0.8674566038907124,
+            "f1_weighted": 0.9089591917498894,
+            "roc_auc": 0.9574896380425358,
+            "confusion_matrix": [
+                [
+                    42,
+                    0,
+                    2
+                ],
+                [
+                    0,
+                    11,
+                    4
+                ],
+                [
+                    0,
+                    1,
+                    15
+                ]
+            ],
+            "classification_report": {
+                "None": {
+                    "precision": 1.0,
+                    "recall": 0.9545454545454546,
+                    "f1-score": 0.9767441860465116,
+                    "support": 44.0
+                },
+                "Insomnia": {
+                    "precision": 0.9166666666666666,
+                    "recall": 0.7333333333333333,
+                    "f1-score": 0.8148148148148148,
+                    "support": 15.0
+                },
+                "Sleep Apnea": {
+                    "precision": 0.7142857142857143,
+                    "recall": 0.9375,
+                    "f1-score": 0.8108108108108109,
+                    "support": 16.0
+                },
+                "accuracy": 0.9066666666666666,
+                "macro avg": {
+                    "precision": 0.876984126984127,
+                    "recall": 0.8751262626262627,
+                    "f1-score": 0.8674566038907124,
+                    "support": 75.0
+                },
+                "weighted avg": {
+                    "precision": 0.9223809523809524,
+                    "recall": 0.9066666666666666,
+                    "f1-score": 0.9089591917498894,
+                    "support": 75.0
+                }
+            },
+            "cv_f1_mean": 0.8768845609910191,
+            "cv_f1_std": 0.027270370941703054
+        },
+        "Random Forest": {
+            "accuracy": 0.9333333333333333,
+            "precision_macro": 0.9041835357624831,
+            "precision_weighted": 0.9397031039136302,
+            "recall_macro": 0.9049242424242424,
+            "recall_weighted": 0.9333333333333333,
+            "f1_macro": 0.9009304871373837,
+            "f1_weighted": 0.9342090859332237,
+            "roc_auc": 0.9358265979459254,
+            "confusion_matrix": [
+                [
+                    43,
+                    0,
+                    1
+                ],
+                [
+                    0,
+                    12,
+                    3
+                ],
+                [
+                    0,
+                    1,
+                    15
+                ]
+            ],
+            "classification_report": {
+                "None": {
+                    "precision": 1.0,
+                    "recall": 0.9772727272727273,
+                    "f1-score": 0.9885057471264368,
+                    "support": 44.0
+                },
+                "Insomnia": {
+                    "precision": 0.9230769230769231,
+                    "recall": 0.8,
+                    "f1-score": 0.8571428571428571,
+                    "support": 15.0
+                },
+                "Sleep Apnea": {
+                    "precision": 0.7894736842105263,
+                    "recall": 0.9375,
+                    "f1-score": 0.8571428571428571,
+                    "support": 16.0
+                },
+                "accuracy": 0.9333333333333333,
+                "macro avg": {
+                    "precision": 0.9041835357624831,
+                    "recall": 0.9049242424242424,
+                    "f1-score": 0.9009304871373837,
+                    "support": 75.0
+                },
+                "weighted avg": {
+                    "precision": 0.9397031039136302,
+                    "recall": 0.9333333333333333,
+                    "f1-score": 0.9342090859332237,
+                    "support": 75.0
+                }
+            },
+            "cv_f1_mean": 0.8704746357495899,
+            "cv_f1_std": 0.04089700061507176
+        },
+        "XGBoost": {
+            "accuracy": 0.9066666666666666,
+            "precision_macro": 0.8549019607843137,
+            "precision_weighted": 0.9098039215686274,
+            "recall_macro": 0.8632575757575758,
+            "recall_weighted": 0.9066666666666666,
+            "f1_macro": 0.8587948450017416,
+            "f1_weighted": 0.9080041797283176,
+            "roc_auc": 0.9433020748767058,
+            "confusion_matrix": [
+                [
+                    43,
+                    0,
+                    1
+                ],
+                [
+                    0,
+                    12,
+                    3
+                ],
+                [
+                    0,
+                    3,
+                    13
+                ]
+            ],
+            "classification_report": {
+                "None": {
+                    "precision": 1.0,
+                    "recall": 0.9772727272727273,
+                    "f1-score": 0.9885057471264368,
+                    "support": 44.0
+                },
+                "Insomnia": {
+                    "precision": 0.8,
+                    "recall": 0.8,
+                    "f1-score": 0.8,
+                    "support": 15.0
+                },
+                "Sleep Apnea": {
+                    "precision": 0.7647058823529411,
+                    "recall": 0.8125,
+                    "f1-score": 0.7878787878787878,
+                    "support": 16.0
+                },
+                "accuracy": 0.9066666666666666,
+                "macro avg": {
+                    "precision": 0.8549019607843137,
+                    "recall": 0.8632575757575758,
+                    "f1-score": 0.8587948450017416,
+                    "support": 75.0
+                },
+                "weighted avg": {
+                    "precision": 0.9098039215686274,
+                    "recall": 0.9066666666666666,
+                    "f1-score": 0.9080041797283176,
+                    "support": 75.0
+                }
+            },
+            "cv_f1_mean": 0.8725558957610398,
+            "cv_f1_std": 0.04567186431021639
+        }
+    }
+}

@@ -1,0 +1,51 @@
+/* Custom Modern Dark Theme for AI SQL Assistant */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+    color: #F8FAFC;
+}
+
+/* Main background */
+.stApp {
+    background: linear-gradient(180deg, #0F172A 0%, #020617 100%);
+}
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background-color: #1E293B !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Header container */
+.main-header {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(99, 102, 241, 0.1));
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+}
+
+/* SQL Code block styling */
+.stCodeBlock {
+    border-radius: 10px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Buttons styling */
+.stButton > button {
+    background: linear-gradient(135deg, #0EA5E9, #2563EB);
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(135deg, #38BDF8, #3B82F6);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    transform: translateY(-1px);
+}

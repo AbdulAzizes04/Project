@@ -1,0 +1,28 @@
+# QuantumMedCompress Dependencies
+# Python 3.11+ compatible
+
+# Deep Learning & Numerical Computing
+torch>=2.1.0
+torchvision>=0.16.0
+numpy>=1.24.0,<2.0.0
+pandas>=2.1.0
+scipy>=1.11.0
+
+# Quantum Machine Learning
+pennylane>=0.35.0
+
+# Computer Vision & Image Processing
+opencv-python>=4.8.0
+scikit-image>=0.21.0
+Pillow>=10.0.0
+matplotlib>=3.8.0
+
+# Backend & REST API
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.4.0
+python-multipart>=0.0.6
+
+# Testing
+pytest>=7.4.0
+httpx>=0.25.0

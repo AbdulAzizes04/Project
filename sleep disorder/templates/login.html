@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Login - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="custom-card p-4 p-md-5 bg-white">
+                <div class="text-center mb-4">
+                    <div class="rounded-circle bg-primary-subtle text-primary mx-auto d-flex align-items-center justify-content-center mb-3" style="width: 56px; height: 56px;">
+                        <i class="fas fa-lock fa-lg"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark">Welcome Back</h3>
+                    <p class="text-muted small">Sign in to access your sleep health assessments and XAI explanations.</p>
+                </div>
+
+                <form method="POST" action="{{ url_for('auth.login') }}">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fas fa-envelope text-muted"></i></span>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fas fa-key text-muted"></i></span>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary-custom w-100 py-2 mb-3">
+                        Sign In <i class="fas fa-arrow-right ms-1"></i>
+                    </button>
+                </form>
+
+                <!-- Quick Fill Demo Buttons -->
+                <div class="bg-light p-3 rounded-3 border mb-3">
+                    <div class="small fw-bold text-muted mb-2"><i class="fas fa-bolt text-warning me-1"></i> Quick Test Logins:</div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-sm btn-outline-primary flex-fill" onclick="fillLogin('demo@sleepai.org', 'demo123')">
+                            Patient Demo
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger flex-fill" onclick="fillLogin('admin@sleepai.org', 'admin123')">
+                            Admin Demo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center small text-muted">
+                    Don't have an account yet? <a href="{{ url_for('auth.register') }}" class="text-primary fw-semibold">Register here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function fillLogin(email, pass) {
+    document.getElementById('email').value = email;
+    document.getElementById('password').value = pass;
+}
+</script>
+{% endblock %}

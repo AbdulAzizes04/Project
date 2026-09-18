@@ -1,0 +1,1010 @@
+{
+  "users": [
+    {
+      "_id": "w3s3g3w",
+      "username": "jakeer ",
+      "email": "jakeer@gmail.com",
+      "password": "$2a$10$wNY8JLRvMFetaqeQ6i8RaewFirmpT4Az6e5hH6yUUqTvOv9zr3tl2",
+      "role": "user",
+      "createdAt": "2026-08-09T12:59:32.977Z"
+    },
+    {
+      "_id": "sq5i2fo",
+      "username": "testuser",
+      "email": "test@example.com",
+      "password": "$2a$10$NZ5DaGHHIIEtfR/9Gg17s.yhehtCJLy1/8AsUTXZr052Ihl9EDeyG",
+      "role": "user",
+      "createdAt": "2026-08-28T09:25:02.898Z"
+    },
+    {
+      "_id": "m9roc4u",
+      "username": "user_750693",
+      "email": "test_1787915750691@example.com",
+      "password": "$2a$10$CTsiOiqcjNZXiH0MOzImhu2M.f9KRUwO0ONzfWgK4vgveWb.xBQIi",
+      "role": "user",
+      "createdAt": "2026-08-28T11:15:50.989Z"
+    },
+    {
+      "_id": "rdkug9s",
+      "username": "testuser_2767",
+      "email": "test_2767@example.com",
+      "password": "$2a$10$VGQwDE7NFiSZXjZEr7vgouX1hjgW2fpF2hrh8Upjv0oW1h0UvQ0ci",
+      "role": "user",
+      "createdAt": "2026-09-17T05:07:41.719Z"
+    }
+  ],
+  "datasets": [
+    {
+      "_id": "nild9fz",
+      "name": "apollo_medicine_details",
+      "filename": "dataset-1786281971392-39401010.csv",
+      "filepath": "D:\\projects\\jacks\\AI Advisor\\datasets\\dataset-1786281971392-39401010.csv",
+      "uploadedBy": "w3s3g3w",
+      "status": "active",
+      "columns": [
+        {
+          "name": "url",
+          "type": "categorical",
+          "nullCount": 1,
+          "uniqueCount": 259158,
+          "sampleValues": [
+            "https://www.apollopharmacy.in/medicine/moxrest-eye-drops-5-ml",
+            "https://www.apollopharmacy.in/medicine/azelon-1mg-tablet",
+            "https://www.apollopharmacy.in/medicine/omindazol-20mg-tablet",
+            "https://www.apollopharmacy.in/medicine/tolset-d-150mg-50mg-tablet",
+            "https://www.apollopharmacy.in/medicine/fluitiwell-27-5mcg-nasal-spray"
+          ],
+          "stats": {
+            "top_values": {
+              "THIAMINE-100MG": 2,
+              "https://www.apollopharmacy.in/medicine/moxrest-eye-drops-5-ml": 1,
+              "https://www.apollopharmacy.in/medicine/azelon-1mg-tablet": 1,
+              "https://www.apollopharmacy.in/medicine/omindazol-20mg-tablet": 1,
+              "https://www.apollopharmacy.in/medicine/tolset-d-150mg-50mg-tablet": 1
+            }
+          }
+        },
+        {
+          "name": "drug_name",
+          "type": "categorical",
+          "nullCount": 0,
+          "uniqueCount": 257170,
+          "sampleValues": [
+            "Moxrest Eye Drops 5 ml",
+            "Azelon 1mg Tablet",
+            "Omindazol 20mg Tablet",
+            "Tolset D 150mg/50mg Tablet",
+            "Fluitiwell 27.5mcg Nasal Spray"
+          ],
+          "stats": {
+            "top_values": {
+              "Sumo Spray": 5,
+              "Lulibet Cream": 5,
+              "Lulifin Cream": 5,
+              "Cipladine Ointment": 4,
+              "Lulirx Cream": 4
+            }
+          }
+        },
+        {
+          "name": "active_ingredient",
+          "type": "categorical",
+          "nullCount": 44289,
+          "uniqueCount": 23841,
+          "sampleValues": [
+            "MOXIFLOXACIN-0.5% W/V",
+            "ANASTROZOLE-1MG",
+            "OMEPRAZOLE-20MG",
+            "DICLOFENAC+ TOLPERISONE-50+ 150MG+ MG",
+            "FLUTICASONE FUROATE-27.5MCG"
+          ],
+          "stats": {
+            "top_values": {
+              "DOMPERIDONE+ RABEPRAZOLE-30+ 20MG+ MG": 2115,
+              "PANTOPRAZOLE-40MG": 2034,
+              "LEVOCETIRIZINE+ MONTELUKAST-5+ 10MG+ MG": 1851,
+              "DOMPERIDONE+ PANTOPRAZOLE-30+ 40MG+ MG": 1714,
+              "ACECLOFENAC+ PARACETAMOL+ SERRATIOPEPTIDASE-100+ 325+ 15MG+ MG+ MG": 1709
+            }
+          }
+        },
+        {
+          "name": "legal_manufacturer_name",
+          "type": "categorical",
+          "nullCount": 103489,
+          "uniqueCount": 8862,
+          "sampleValues": [
+            "Eyerest Pharmaceuticals Pvt Ltd",
+            "Vhb Life Sciences Inc",
+            "Unimarck Healthcare Pvt Ltd",
+            "Matrixx Formulation",
+            "Fibovil Pharmaceuticals Pvt Ltd"
+          ],
+          "stats": {
+            "top_values": {
+              "Intas Pharmaceuticals Ltd": 2231,
+              "Cipla Ltd": 2218,
+              "Sun Pharmaceutical Industries Ltd": 2082,
+              "Lupin Ltd": 1641,
+              "Torrent Pharmaceuticals Ltd": 1565
+            }
+          }
+        },
+        {
+          "name": "dosage_form",
+          "type": "categorical",
+          "nullCount": 68256,
+          "uniqueCount": 308,
+          "sampleValues": [
+            "Eye Drops",
+            "Tablet",
+            "Tablet",
+            "Spray",
+            "Tablet"
+          ],
+          "stats": {
+            "top_values": {
+              "Tablet": 79799,
+              "TABLET": 33201,
+              "Injection": 15733,
+              "Capsule": 11217,
+              "Syrup": 10430
+            }
+          }
+        }
+      ],
+      "summary": {
+        "rowCount": 259160,
+        "columnCount": 5,
+        "duplicates": 0,
+        "columns": [
+          {
+            "name": "url",
+            "type": "categorical",
+            "nullCount": 1,
+            "uniqueCount": 259158,
+            "sampleValues": [
+              "https://www.apollopharmacy.in/medicine/moxrest-eye-drops-5-ml",
+              "https://www.apollopharmacy.in/medicine/azelon-1mg-tablet",
+              "https://www.apollopharmacy.in/medicine/omindazol-20mg-tablet",
+              "https://www.apollopharmacy.in/medicine/tolset-d-150mg-50mg-tablet",
+              "https://www.apollopharmacy.in/medicine/fluitiwell-27-5mcg-nasal-spray"
+            ],
+            "stats": {
+              "top_values": {
+                "THIAMINE-100MG": 2,
+                "https://www.apollopharmacy.in/medicine/moxrest-eye-drops-5-ml": 1,
+                "https://www.apollopharmacy.in/medicine/azelon-1mg-tablet": 1,
+                "https://www.apollopharmacy.in/medicine/omindazol-20mg-tablet": 1,
+                "https://www.apollopharmacy.in/medicine/tolset-d-150mg-50mg-tablet": 1
+              }
+            }
+          },
+          {
+            "name": "drug_name",
+            "type": "categorical",
+            "nullCount": 0,
+            "uniqueCount": 257170,
+            "sampleValues": [
+              "Moxrest Eye Drops 5 ml",
+              "Azelon 1mg Tablet",
+              "Omindazol 20mg Tablet",
+              "Tolset D 150mg/50mg Tablet",
+              "Fluitiwell 27.5mcg Nasal Spray"
+            ],
+            "stats": {
+              "top_values": {
+                "Sumo Spray": 5,
+                "Lulibet Cream": 5,
+                "Lulifin Cream": 5,
+                "Cipladine Ointment": 4,
+                "Lulirx Cream": 4
+              }
+            }
+          },
+          {
+            "name": "active_ingredient",
+            "type": "categorical",
+            "nullCount": 44289,
+            "uniqueCount": 23841,
+            "sampleValues": [
+              "MOXIFLOXACIN-0.5% W/V",
+              "ANASTROZOLE-1MG",
+              "OMEPRAZOLE-20MG",
+              "DICLOFENAC+ TOLPERISONE-50+ 150MG+ MG",
+              "FLUTICASONE FUROATE-27.5MCG"
+            ],
+            "stats": {
+              "top_values": {
+                "DOMPERIDONE+ RABEPRAZOLE-30+ 20MG+ MG": 2115,
+                "PANTOPRAZOLE-40MG": 2034,
+                "LEVOCETIRIZINE+ MONTELUKAST-5+ 10MG+ MG": 1851,
+                "DOMPERIDONE+ PANTOPRAZOLE-30+ 40MG+ MG": 1714,
+                "ACECLOFENAC+ PARACETAMOL+ SERRATIOPEPTIDASE-100+ 325+ 15MG+ MG+ MG": 1709
+              }
+            }
+          },
+          {
+            "name": "legal_manufacturer_name",
+            "type": "categorical",
+            "nullCount": 103489,
+            "uniqueCount": 8862,
+            "sampleValues": [
+              "Eyerest Pharmaceuticals Pvt Ltd",
+              "Vhb Life Sciences Inc",
+              "Unimarck Healthcare Pvt Ltd",
+              "Matrixx Formulation",
+              "Fibovil Pharmaceuticals Pvt Ltd"
+            ],
+            "stats": {
+              "top_values": {
+                "Intas Pharmaceuticals Ltd": 2231,
+                "Cipla Ltd": 2218,
+                "Sun Pharmaceutical Industries Ltd": 2082,
+                "Lupin Ltd": 1641,
+                "Torrent Pharmaceuticals Ltd": 1565
+              }
+            }
+          },
+          {
+            "name": "dosage_form",
+            "type": "categorical",
+            "nullCount": 68256,
+            "uniqueCount": 308,
+            "sampleValues": [
+              "Eye Drops",
+              "Tablet",
+              "Tablet",
+              "Spray",
+              "Tablet"
+            ],
+            "stats": {
+              "top_values": {
+                "Tablet": 79799,
+                "TABLET": 33201,
+                "Injection": 15733,
+                "Capsule": 11217,
+                "Syrup": 10430
+              }
+            }
+          }
+        ],
+        "correlationMatrix": {},
+        "outliers": {},
+        "suggestedKPIs": []
+      },
+      "createdAt": "2026-08-09T13:26:12.911Z",
+      "rowCount": 259160,
+      "columnCount": 5
+    },
+    {
+      "_id": "9rfwczq",
+      "name": "sample_sales",
+      "filename": "dataset-1787915751051-896414235.csv",
+      "filepath": "D:\\projects\\jacks\\AI Advisor\\datasets\\dataset-1787915751051-896414235.csv",
+      "uploadedBy": "m9roc4u",
+      "status": "active",
+      "columns": [
+        {
+          "name": "Date",
+          "type": "datetime",
+          "nullCount": 0,
+          "uniqueCount": 25,
+          "sampleValues": [
+            "2025-01-15",
+            "2025-01-20",
+            "2025-02-10",
+            "2025-02-15",
+            "2025-03-05"
+          ],
+          "stats": {}
+        },
+        {
+          "name": "Category",
+          "type": "categorical",
+          "nullCount": 0,
+          "uniqueCount": 3,
+          "sampleValues": [
+            "Electronics",
+            "Furniture",
+            "Office Supplies",
+            "Electronics",
+            "Furniture"
+          ],
+          "stats": {
+            "top_values": {
+              "Electronics": 9,
+              "Furniture": 8,
+              "Office Supplies": 8
+            }
+          }
+        },
+        {
+          "name": "SubCategory",
+          "type": "categorical",
+          "nullCount": 0,
+          "uniqueCount": 6,
+          "sampleValues": [
+            "Phones",
+            "Chairs",
+            "Paper",
+            "Laptops",
+            "Tables"
+          ],
+          "stats": {
+            "top_values": {
+              "Phones": 5,
+              "Chairs": 4,
+              "Paper": 4,
+              "Laptops": 4,
+              "Tables": 4
+            }
+          }
+        },
+        {
+          "name": "Region",
+          "type": "categorical",
+          "nullCount": 0,
+          "uniqueCount": 4,
+          "sampleValues": [
+            "East",
+            "West",
+            "Central",
+            "East",
+            "South"
+          ],
+          "stats": {
+            "top_values": {
+              "East": 7,
+              "West": 6,
+              "Central": 6,
+              "South": 6
+            }
+          }
+        },
+        {
+          "name": "Sales",
+          "type": "numeric",
+          "nullCount": 0,
+          "uniqueCount": 25,
+          "sampleValues": [
+            500,
+            350,
+            45,
+            1200,
+            600
+          ],
+          "stats": {
+            "mean": 509,
+            "median": 410,
+            "min": 30,
+            "max": 1500,
+            "std": 434.0482884042588,
+            "q25": 120,
+            "q75": 750
+          }
+        },
+        {
+          "name": "Profit",
+          "type": "numeric",
+          "nullCount": 0,
+          "uniqueCount": 24,
+          "sampleValues": [
+            150,
+            45,
+            20,
+            350,
+            -50
+          ],
+          "stats": {
+            "mean": 93,
+            "median": 45,
+            "min": -120,
+            "max": 450,
+            "std": 147.77065563455645,
+            "q25": 20,
+            "q75": 150
+          }
+        },
+        {
+          "name": "Quantity",
+          "type": "numeric",
+          "nullCount": 0,
+          "uniqueCount": 6,
+          "sampleValues": [
+            2,
+            3,
+            5,
+            1,
+            1
+          ],
+          "stats": {
+            "mean": 2.76,
+            "median": 2,
+            "min": 1,
+            "max": 6,
+            "std": 1.5620499351813308,
+            "q25": 2,
+            "q75": 4
+          }
+        }
+      ],
+      "summary": {
+        "rowCount": 25,
+        "columnCount": 7,
+        "duplicates": 0,
+        "columns": [
+          {
+            "name": "Date",
+            "type": "datetime",
+            "nullCount": 0,
+            "uniqueCount": 25,
+            "sampleValues": [
+              "2025-01-15",
+              "2025-01-20",
+              "2025-02-10",
+              "2025-02-15",
+              "2025-03-05"
+            ],
+            "stats": {}
+          },
+          {
+            "name": "Category",
+            "type": "categorical",
+            "nullCount": 0,
+            "uniqueCount": 3,
+            "sampleValues": [
+              "Electronics",
+              "Furniture",
+              "Office Supplies",
+              "Electronics",
+              "Furniture"
+            ],
+            "stats": {
+              "top_values": {
+                "Electronics": 9,
+                "Furniture": 8,
+                "Office Supplies": 8
+              }
+            }
+          },
+          {
+            "name": "SubCategory",
+            "type": "categorical",
+            "nullCount": 0,
+            "uniqueCount": 6,
+            "sampleValues": [
+              "Phones",
+              "Chairs",
+              "Paper",
+              "Laptops",
+              "Tables"
+            ],
+            "stats": {
+              "top_values": {
+                "Phones": 5,
+                "Chairs": 4,
+                "Paper": 4,
+                "Laptops": 4,
+                "Tables": 4
+              }
+            }
+          },
+          {
+            "name": "Region",
+            "type": "categorical",
+            "nullCount": 0,
+            "uniqueCount": 4,
+            "sampleValues": [
+              "East",
+              "West",
+              "Central",
+              "East",
+              "South"
+            ],
+            "stats": {
+              "top_values": {
+                "East": 7,
+                "West": 6,
+                "Central": 6,
+                "South": 6
+              }
+            }
+          },
+          {
+            "name": "Sales",
+            "type": "numeric",
+            "nullCount": 0,
+            "uniqueCount": 25,
+            "sampleValues": [
+              500,
+              350,
+              45,
+              1200,
+              600
+            ],
+            "stats": {
+              "mean": 509,
+              "median": 410,
+              "min": 30,
+              "max": 1500,
+              "std": 434.0482884042588,
+              "q25": 120,
+              "q75": 750
+            }
+          },
+          {
+            "name": "Profit",
+            "type": "numeric",
+            "nullCount": 0,
+            "uniqueCount": 24,
+            "sampleValues": [
+              150,
+              45,
+              20,
+              350,
+              -50
+            ],
+            "stats": {
+              "mean": 93,
+              "median": 45,
+              "min": -120,
+              "max": 450,
+              "std": 147.77065563455645,
+              "q25": 20,
+              "q75": 150
+            }
+          },
+          {
+            "name": "Quantity",
+            "type": "numeric",
+            "nullCount": 0,
+            "uniqueCount": 6,
+            "sampleValues": [
+              2,
+              3,
+              5,
+              1,
+              1
+            ],
+            "stats": {
+              "mean": 2.76,
+              "median": 2,
+              "min": 1,
+              "max": 6,
+              "std": 1.5620499351813308,
+              "q25": 2,
+              "q75": 4
+            }
+          }
+        ],
+        "correlationMatrix": {
+          "Sales": {
+            "Sales": 1,
+            "Profit": 0.6287912080755763,
+            "Quantity": -0.7651736927634344
+          },
+          "Profit": {
+            "Sales": 0.6287912080755763,
+            "Profit": 1,
+            "Quantity": -0.34910985981237447
+          },
+          "Quantity": {
+            "Sales": -0.7651736927634344,
+            "Profit": -0.34910985981237447,
+            "Quantity": 1
+          }
+        },
+        "outliers": {
+          "Sales": {
+            "outlierCount": 0,
+            "percentage": 0
+          },
+          "Profit": {
+            "outlierCount": 3,
+            "percentage": 12
+          },
+          "Quantity": {
+            "outlierCount": 0,
+            "percentage": 0
+          }
+        },
+        "suggestedKPIs": [
+          {
+            "column": "Sales",
+            "sum": 12725,
+            "avg": 509
+          },
+          {
+            "column": "Profit",
+            "sum": 2325,
+            "avg": 93
+          }
+        ]
+      },
+      "createdAt": "2026-08-28T11:15:51.069Z",
+      "rowCount": 25,
+      "columnCount": 7
+    },
+    {
+      "_id": "nwk5al9",
+      "name": "sample_sales",
+      "filename": "dataset-1787916356105-118406980.csv",
+      "filepath": "D:\\projects\\jacks\\AI Advisor\\datasets\\dataset-1787916356105-118406980.csv",
+      "uploadedBy": "sq5i2fo",
+      "status": "active",
+      "columns": [
+        {
+          "name": "Date",
+          "type": "datetime",
+          "nullCount": 0,
+          "uniqueCount": 25,
+          "sampleValues": [
+            "2025-01-15",
+            "2025-01-20",
+            "2025-02-10",
+            "2025-02-15",
+            "2025-03-05"
+          ],
+          "stats": {}
+        },
+        {
+          "name": "Category",
+          "type": "categorical",
+          "nullCount": 0,
+          "uniqueCount": 3,
+          "sampleValues": [
+            "Electronics",
+            "Furniture",
+            "Office Supplies",
+            "Electronics",
+            "Furniture"
+          ],
+          "stats": {
+            "top_values": {
+              "Electronics": 9,
+              "Furniture": 8,
+              "Office Supplies": 8
+            }
+          }
+        },
+        {
+          "name": "SubCategory",
+          "type": "categorical",
+          "nullCount": 0,
+          "uniqueCount": 6,
+          "sampleValues": [
+            "Phones",
+            "Chairs",
+            "Paper",
+            "Laptops",
+            "Tables"
+          ],
+          "stats": {
+            "top_values": {
+              "Phones": 5,
+              "Chairs": 4,
+              "Paper": 4,
+              "Laptops": 4,
+              "Tables": 4
+            }
+          }
+        },
+        {
+          "name": "Region",
+          "type": "categorical",
+          "nullCount": 0,
+          "uniqueCount": 4,
+          "sampleValues": [
+            "East",
+            "West",
+            "Central",
+            "East",
+            "South"
+          ],
+          "stats": {
+            "top_values": {
+              "East": 7,
+              "West": 6,
+              "Central": 6,
+              "South": 6
+            }
+          }
+        },
+        {
+          "name": "Sales",
+          "type": "numeric",
+          "nullCount": 0,
+          "uniqueCount": 25,
+          "sampleValues": [
+            500,
+            350,
+            45,
+            1200,
+            600
+          ],
+          "stats": {
+            "mean": 509,
+            "median": 410,
+            "min": 30,
+            "max": 1500,
+            "std": 434.0482884042588,
+            "q25": 120,
+            "q75": 750
+          }
+        },
+        {
+          "name": "Profit",
+          "type": "numeric",
+          "nullCount": 0,
+          "uniqueCount": 24,
+          "sampleValues": [
+            150,
+            45,
+            20,
+            350,
+            -50
+          ],
+          "stats": {
+            "mean": 93,
+            "median": 45,
+            "min": -120,
+            "max": 450,
+            "std": 147.77065563455645,
+            "q25": 20,
+            "q75": 150
+          }
+        },
+        {
+          "name": "Quantity",
+          "type": "numeric",
+          "nullCount": 0,
+          "uniqueCount": 6,
+          "sampleValues": [
+            2,
+            3,
+            5,
+            1,
+            1
+          ],
+          "stats": {
+            "mean": 2.76,
+            "median": 2,
+            "min": 1,
+            "max": 6,
+            "std": 1.5620499351813308,
+            "q25": 2,
+            "q75": 4
+          }
+        }
+      ],
+      "summary": {
+        "rowCount": 25,
+        "columnCount": 7,
+        "duplicates": 0,
+        "columns": [
+          {
+            "name": "Date",
+            "type": "datetime",
+            "nullCount": 0,
+            "uniqueCount": 25,
+            "sampleValues": [
+              "2025-01-15",
+              "2025-01-20",
+              "2025-02-10",
+              "2025-02-15",
+              "2025-03-05"
+            ],
+            "stats": {}
+          },
+          {
+            "name": "Category",
+            "type": "categorical",
+            "nullCount": 0,
+            "uniqueCount": 3,
+            "sampleValues": [
+              "Electronics",
+              "Furniture",
+              "Office Supplies",
+              "Electronics",
+              "Furniture"
+            ],
+            "stats": {
+              "top_values": {
+                "Electronics": 9,
+                "Furniture": 8,
+                "Office Supplies": 8
+              }
+            }
+          },
+          {
+            "name": "SubCategory",
+            "type": "categorical",
+            "nullCount": 0,
+            "uniqueCount": 6,
+            "sampleValues": [
+              "Phones",
+              "Chairs",
+              "Paper",
+              "Laptops",
+              "Tables"
+            ],
+            "stats": {
+              "top_values": {
+                "Phones": 5,
+                "Chairs": 4,
+                "Paper": 4,
+                "Laptops": 4,
+                "Tables": 4
+              }
+            }
+          },
+          {
+            "name": "Region",
+            "type": "categorical",
+            "nullCount": 0,
+            "uniqueCount": 4,
+            "sampleValues": [
+              "East",
+              "West",
+              "Central",
+              "East",
+              "South"
+            ],
+            "stats": {
+              "top_values": {
+                "East": 7,
+                "West": 6,
+                "Central": 6,
+                "South": 6
+              }
+            }
+          },
+          {
+            "name": "Sales",
+            "type": "numeric",
+            "nullCount": 0,
+            "uniqueCount": 25,
+            "sampleValues": [
+              500,
+              350,
+              45,
+              1200,
+              600
+            ],
+            "stats": {
+              "mean": 509,
+              "median": 410,
+              "min": 30,
+              "max": 1500,
+              "std": 434.0482884042588,
+              "q25": 120,
+              "q75": 750
+            }
+          },
+          {
+            "name": "Profit",
+            "type": "numeric",
+            "nullCount": 0,
+            "uniqueCount": 24,
+            "sampleValues": [
+              150,
+              45,
+              20,
+              350,
+              -50
+            ],
+            "stats": {
+              "mean": 93,
+              "median": 45,
+              "min": -120,
+              "max": 450,
+              "std": 147.77065563455645,
+              "q25": 20,
+              "q75": 150
+            }
+          },
+          {
+            "name": "Quantity",
+            "type": "numeric",
+            "nullCount": 0,
+            "uniqueCount": 6,
+            "sampleValues": [
+              2,
+              3,
+              5,
+              1,
+              1
+            ],
+            "stats": {
+              "mean": 2.76,
+              "median": 2,
+              "min": 1,
+              "max": 6,
+              "std": 1.5620499351813308,
+              "q25": 2,
+              "q75": 4
+            }
+          }
+        ],
+        "correlationMatrix": {
+          "Sales": {
+            "Sales": 1,
+            "Profit": 0.6287912080755763,
+            "Quantity": -0.7651736927634344
+          },
+          "Profit": {
+            "Sales": 0.6287912080755763,
+            "Profit": 1,
+            "Quantity": -0.34910985981237447
+          },
+          "Quantity": {
+            "Sales": -0.7651736927634344,
+            "Profit": -0.34910985981237447,
+            "Quantity": 1
+          }
+        },
+        "outliers": {
+          "Sales": {
+            "outlierCount": 0,
+            "percentage": 0
+          },
+          "Profit": {
+            "outlierCount": 3,
+            "percentage": 12
+          },
+          "Quantity": {
+            "outlierCount": 0,
+            "percentage": 0
+          }
+        },
+        "suggestedKPIs": [
+          {
+            "column": "Sales",
+            "sum": 12725,
+            "avg": 509
+          },
+          {
+            "column": "Profit",
+            "sum": 2325,
+            "avg": 93
+          }
+        ]
+      },
+      "createdAt": "2026-08-28T11:25:56.112Z",
+      "rowCount": 25,
+      "columnCount": 7
+    }
+  ],
+  "models": [],
+  "chats": [
+    {
+      "_id": "u58cl9q",
+      "datasetId": "nwk5al9",
+      "userId": "sq5i2fo",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which category generated the highest sales?",
+          "timestamp": "2026-08-28T11:26:32.361Z"
+        },
+        {
+          "role": "assistant",
+          "content": "### Business Advisory Summary\n\n*Analysis performed on dataset using **groupby** query.* \n\nBased on the breakdown of **Sales** by **Category**:\n- The highest performing category is **Electronics** with a total of **7,650**.\n- The lowest performing category is **Office Supplies** with a total of **615**.\n\n#### Top Categories Breakdown:\n1. **Electronics**: 7,650\n2. **Furniture**: 4,460\n3. **Office Supplies**: 615\n\n#### Business Recommendations:\n- **Optimize Resource Allocation**: Focus marketing and operational resources on **Electronics** to capitalize on its high yield.\n- **Review Low Performers**: Investigate underperforming categories to see if there is potential for price adjustments or restructuring.",
+          "timestamp": "2026-08-28T11:26:32.361Z"
+        },
+        {
+          "role": "user",
+          "content": "lowest sales",
+          "timestamp": "2026-08-28T11:33:49.618Z"
+        },
+        {
+          "role": "assistant",
+          "content": "### Business Advisory Summary\n\n*Analysis performed on dataset using **groupby** query.* \n\nBased on the breakdown of **Sales** by **Category**:\n- The highest performing category is **Electronics** with a total of **7,650**.\n- The lowest performing category is **Office Supplies** with a total of **615**.\n\n#### Top Categories Breakdown:\n1. **Electronics**: 7,650\n2. **Furniture**: 4,460\n3. **Office Supplies**: 615\n\n#### Business Recommendations:\n- **Optimize Resource Allocation**: Focus marketing and operational resources on **Electronics** to capitalize on its high yield.\n- **Review Low Performers**: Investigate underperforming categories to see if there is potential for price adjustments or restructuring.",
+          "timestamp": "2026-08-28T11:33:49.618Z"
+        }
+      ],
+      "updatedAt": "2026-08-28T11:33:49.637Z"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}AI Health Recommendations - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Header Card -->
+            <div class="custom-card p-4 bg-white mb-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-2">
+                    <span class="badge bg-success-subtle text-success fw-semibold px-3 py-1">
+                        <i class="fas fa-sparkles me-1"></i> Google Gemini Decision Support
+                    </span>
+                    <a href="{{ url_for('prediction.result', id=assessment.id) }}" class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-1"></i> Back to Result
+                    </a>
+                </div>
+                <h2 class="fw-bold text-dark mb-1">Personalized Sleep & Lifestyle Recommendations</h2>
+                <p class="text-muted small mb-0">
+                    Generated for preliminary screening outcome: <b class="text-primary">{{ assessment.predicted_class }}</b> ({{ (assessment.confidence or 0.0)|round(1) }}% confidence).
+                </p>
+            </div>
+
+            <!-- Context Bar -->
+            <div class="custom-card p-3 bg-light border mb-4">
+                <div class="row text-center text-md-start align-items-center gy-2">
+                    <div class="col-md-3">
+                        <div class="small text-muted">Screening Class:</div>
+                        <div class="fw-bold text-dark">{{ assessment.predicted_class }}</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="small text-muted">Model Used:</div>
+                        <div class="fw-bold text-dark">{{ assessment.model_name }}</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="small text-muted">Sleep Recorded:</div>
+                        <div class="fw-bold text-dark">{{ (input_data or {}).get('Sleep Duration', 'N/A') }} hrs (Quality: {{ (input_data or {}).get('Quality of Sleep', 'N/A') }}/10)</div>
+                    </div>
+                    <div class="col-md-3 text-md-end">
+                        <a href="{{ url_for('chatbot.chatbot_view') }}" class="btn btn-sm btn-primary-custom">
+                            <i class="fas fa-comments me-1"></i> Ask AI Assistant
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations Content Box -->
+            <div class="custom-card p-4 p-md-5 bg-white mb-4" id="recommendation-content">
+                <div class="markdown-body">
+                    {{ (recommendation_text or 'No recommendations recorded.')|replace('### ', '<h4 class="fw-bold text-primary mt-4 mb-3"><i class="fas fa-check-circle me-2"></i>')|replace('\n\n', '</p><p class="text-muted leading-relaxed">')|replace('\n*', '<br>• ')|safe }}
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="d-flex flex-wrap gap-3 mb-4">
+                <a href="{{ url_for('user.download_pdf', id=assessment.id) }}" class="btn btn-primary-custom flex-fill py-2">
+                    <i class="fas fa-file-pdf me-2"></i> Download Official Clinical PDF Report
+                </a>
+                <a href="{{ url_for('prediction.explanation', id=assessment.id) }}" class="btn btn-outline-secondary flex-fill py-2">
+                    <i class="fas fa-brain me-2"></i> Review SHAP Feature Attributions
+                </a>
+                <a href="{{ url_for('chatbot.chatbot_view') }}" class="btn btn-outline-primary flex-fill py-2">
+                    <i class="fas fa-robot me-2"></i> Discuss With AI Chatbot
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

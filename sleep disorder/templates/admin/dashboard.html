@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Analytics Dashboard - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Admin Header -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge bg-danger text-white text-uppercase px-2 py-1">Administrator</span>
+                <h2 class="fw-bold text-dark mb-0">Clinical System Analytics</h2>
+            </div>
+            <p class="text-muted small mb-0">System performance metrics, patient disorder distributions, and ML benchmark status.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('admin.users') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-users me-1"></i> Manage Users
+            </a>
+            <a href="{{ url_for('admin.model_performance') }}" class="btn btn-outline-primary">
+                <i class="fas fa-microchip me-1"></i> Model Benchmarks
+            </a>
+        </div>
+    </div>
+
+    <!-- Admin Metric Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card info">
+                <div>
+                    <div class="small text-muted fw-semibold">Registered Patients</div>
+                    <h3 class="fw-bold mb-0 text-dark">{{ total_users }}</h3>
+                </div>
+                <div class="stat-icon bg-info-subtle text-info">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card success">
+                <div>
+                    <div class="small text-muted fw-semibold">Total Screenings</div>
+                    <h3 class="fw-bold mb-0 text-dark">{{ total_assessments }}</h3>
+                </div>
+                <div class="stat-icon bg-success-subtle text-success">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card warning">
+                <div>
+                    <div class="small text-muted fw-semibold">Most Common Class</div>
+                    <h4 class="fw-bold mb-0 text-dark">{{ top_disorder }}</h4>
+                </div>
+                <div class="stat-icon bg-warning-subtle text-warning">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card danger">
+                <div>
+                    <div class="small text-muted fw-semibold">Active Best Model</div>
+                    <h5 class="fw-bold mb-0 text-dark">{{ metrics.get('best_model_name', 'Random Forest') }}</h5>
+                </div>
+                <div class="stat-icon bg-danger-subtle text-danger">
+                    <i class="fas fa-crown"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row g-4 mb-4">
+        <!-- Disorder Distribution Chart -->
+        <div class="col-lg-5">
+            <div class="custom-card p-4 bg-white h-100">
+                <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-pie text-primary me-2"></i> Predicted Disorder Distribution</h5>
+                <div style="height: 280px;" class="d-flex align-items-center justify-content-center">
+                    <canvas id="disorderChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Benchmark Bar Chart -->
+        <div class="col-lg-7">
+            <div class="custom-card p-4 bg-white h-100">
+                <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-bar text-primary me-2"></i> Machine Learning Accuracy Comparison</h5>
+                <div style="height: 280px;">
+                    <canvas id="modelChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Screenings Table -->
+    <div class="custom-card p-4 bg-white mb-4">
+        <h5 class="fw-bold text-dark mb-3"><i class="fas fa-list text-primary me-2"></i> Recent Assessments Across All Patients</h5>
+        {% if recent_assessments %}
+        <div class="table-responsive">
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Date</th>
+                        <th>Classification</th>
+                        <th>Confidence</th>
+                        <th>Model</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in recent_assessments %}
+                    <tr>
+                        <td class="fw-bold text-muted">#{{ a.id }}</td>
+                        <td class="fw-semibold">{{ a.patient.name if a.patient else 'Unknown' }}</td>
+                        <td>{{ a.assessment_date.strftime('%b %d, %Y %H:%M') if a.assessment_date else 'N/A' }}</td>
+                        <td>
+                            {% if a.predicted_class == 'None' %}
+                                <span class="badge bg-success-subtle text-success px-2 py-1">No Disorder</span>
+                            {% elif a.predicted_class == 'Insomnia' %}
+                                <span class="badge bg-warning-subtle text-warning px-2 py-1">Insomnia</span>
+                            {% else %}
+                                <span class="badge bg-danger-subtle text-danger px-2 py-1">Sleep Apnea</span>
+                            {% endif %}
+                        </td>
+                        <td class="fw-semibold">{{ (a.confidence or 0.0)|round(1) }}%</td>
+                        <td class="small text-muted">{{ a.model_name }}</td>
+                        <td class="text-end">
+                            <a href="{{ url_for('prediction.result', id=a.id) }}" class="btn btn-sm btn-outline-primary" title="Review Result">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{{ url_for('user.download_pdf', id=a.id) }}" class="btn btn-sm btn-outline-success" title="PDF">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-muted small mb-0">No patient assessments found in the database.</p>
+        {% endif %}
+    </div>
+<div id="admin-charts-data" class="d-none" data-disorder='{{ disorder_counts|tojson }}' data-metrics='{{ (metrics.get("models", {}) if metrics else {})|tojson }}'></div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const dataEl = document.getElementById("admin-charts-data");
+    const disorderData = dataEl ? JSON.parse(dataEl.getAttribute("data-disorder") || "{}") : {};
+    const disorderLabels = Object.keys(disorderData);
+    const disorderValues = Object.values(disorderData);
+
+    const ctxDisorder = document.getElementById("disorderChart").getContext("2d");
+    new Chart(ctxDisorder, {
+        type: "doughnut",
+        data: {
+            labels: disorderLabels.length ? disorderLabels : ["None", "Insomnia", "Sleep Apnea"],
+            datasets: [{
+                data: disorderValues.length ? disorderValues : [1, 1, 1],
+                backgroundColor: ["#10b981", "#f59e0b", "#ef4444"],
+                borderWidth: 2,
+                borderColor: "#ffffff"
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: "bottom" }
+            }
+        }
+    });
+
+    // 2. Model Accuracy Bar Chart
+    const modelsObj = dataEl ? JSON.parse(dataEl.getAttribute("data-metrics") || "{}") : {};
+    const modelNames = Object.keys(modelsObj);
+    const modelAccuracies = modelNames.map(function(k) { return (modelsObj[k].accuracy * 100).toFixed(2); });
+    const modelF1 = modelNames.map(function(k) { return (modelsObj[k].f1_macro * 100).toFixed(2); });
+
+    const ctxModel = document.getElementById("modelChart").getContext("2d");
+    new Chart(ctxModel, {
+        type: "bar",
+        data: {
+            labels: modelNames.length ? modelNames : ["Logistic Regression", "Decision Tree", "SVM", "Random Forest", "XGBoost"],
+            datasets: [
+                {
+                    label: "Accuracy (%)",
+                    data: modelAccuracies.length ? modelAccuracies : [89.33, 90.67, 90.67, 93.33, 90.67],
+                    backgroundColor: "rgba(37, 99, 235, 0.8)",
+                    borderRadius: 6
+                },
+                {
+                    label: "Macro F1 (%)",
+                    data: modelF1.length ? modelF1 : [86.63, 86.53, 86.75, 90.09, 85.88],
+                    backgroundColor: "rgba(16, 185, 129, 0.8)",
+                    borderRadius: 6
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    min: 75,
+                    max: 100
+                }
+            },
+            plugins: {
+                legend: { position: "bottom" }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

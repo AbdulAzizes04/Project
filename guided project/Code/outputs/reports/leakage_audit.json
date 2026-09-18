@@ -1,0 +1,27 @@
+{
+    "dataset_analyzed": "paysim_transactions.csv",
+    "total_columns_inspected": 11,
+    "leaking_features_count": 3,
+    "leaking_features": [
+        "newbalanceOrig",
+        "newbalanceDest",
+        "isFlaggedFraud"
+    ],
+    "safe_authorization_features_count": 5,
+    "safe_authorization_features": [
+        "step",
+        "type",
+        "amount",
+        "oldbalanceOrg",
+        "oldbalanceDest"
+    ],
+    "temporal_audit": {
+        "step_present": true,
+        "min_step": 1,
+        "max_step": 743,
+        "is_chronologically_sorted": false,
+        "temporal_ordering_action": "ENFORCE_CHRONOLOGICAL_SPLIT"
+    },
+    "post_transaction_leakage_impact": "CRITICAL: Using newbalanceOrig/newbalanceDest or balance wipeout features allows classifiers to trivially achieve artificial 100% metrics by observing post-settlement state. These features must be permanently excluded from production authorization models.",
+    "report_generated_at": "2026-09-17 11:15:43"
+}

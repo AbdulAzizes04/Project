@@ -1,0 +1,70 @@
+# EARTH VISION-X Configuration
+# Explainable Multi-Temporal Satellite Intelligence Platform
+
+project:
+  name: "EARTH VISION-X"
+  subtitle: "Explainable Multi-Temporal Satellite Intelligence Platform for Environmental Change Detection"
+  version: "1.0.0"
+
+temporal:
+  default_t1_year: 2016
+  default_t2_year: 2026
+  default_max_cloud_percentage: 15.0
+  temporal_window_days: 60
+  prefer_seasonal_match: true
+
+satellite:
+  preferred_collection: "COPERNICUS/S2_HARMONIZED"  # Sentinel-2 L1C TOA Harmonized for 2016-2026 consistency
+  alternative_collection: "COPERNICUS/S2_SR_HARMONIZED"
+  bands:
+    blue: "B2"
+    green: "B3"
+    red: "B4"
+    nir: "B8"
+    swir: "B11"
+  spatial_resolution_meters: 10
+  default_crs: "EPSG:4326"
+
+loss:
+  cross_entropy: 0.30
+  dice: 0.40
+  focal: 0.30
+  focal_gamma: 2.0
+  focal_alpha: 0.25
+
+classes:
+  supported:
+    - "No Change"
+    - "Deforestation"
+    - "Urban Expansion"
+    - "Flood"
+    - "Water Body Change"
+    - "Vegetation Loss"
+    - "Agriculture"
+    - "Mining"
+    - "Wildfire"
+    - "Land Cover Change"
+    - "Infrastructure Development"
+  trained:
+    - "No Change"
+    - "Deforestation"
+    - "Urban Expansion"
+    - "Water Body Change"
+    - "Vegetation Loss"
+
+model:
+  default_backbone: "Siamese-ViT"
+  image_size: 512
+  patch_size: 16
+  embed_dim: 768
+  num_heads: 12
+  num_layers: 12
+  in_channels: 3  # RGB or multispectral stack
+  device: "auto"  # cuda if available, else cpu
+
+paths:
+  checkpoints_dir: "checkpoints"
+  data_raw_dir: "data/raw"
+  data_processed_dir: "data/processed"
+  data_samples_dir: "data/samples"
+  outputs_dir: "outputs"

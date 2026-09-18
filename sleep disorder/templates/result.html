@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Screening Result - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Header Result Card -->
+            {% set p_class = assessment.predicted_class %}
+            {% set badge_class = "success" if p_class == "None" else ("warning" if p_class == "Insomnia" else "danger") %}
+            
+            <div class="custom-card p-4 p-md-5 bg-white mb-4 border-top border-5 border-{{ badge_class }}">
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+                    <span class="badge bg-{{ badge_class }}-subtle text-{{ badge_class }} fw-semibold px-3 py-1 fs-6">
+                        Preliminary Screening Assessment
+                    </span>
+                    <span class="text-muted small">
+                        <i class="fas fa-calendar-alt me-1"></i> {{ assessment.assessment_date.strftime('%B %d, %Y at %H:%M UTC') if assessment.assessment_date else 'N/A' }}
+                    </span>
+                </div>
+
+                <div class="row align-items-center gy-4 mb-4">
+                    <div class="col-md-7">
+                        <div class="text-muted small fw-semibold text-uppercase">Model Classification Output</div>
+                        <h1 class="display-5 fw-bold text-dark mb-2">
+                            {% if p_class == "None" %}
+                                <i class="fas fa-circle-check text-success me-2"></i> No Sleep Disorder
+                            {% elif p_class == "Insomnia" %}
+                                <i class="fas fa-moon text-warning me-2"></i> Possible Insomnia
+                            {% else %}
+                                <i class="fas fa-lungs text-danger me-2"></i> Possible Sleep Apnea
+                            {% endif %}
+                        </h1>
+                        <p class="text-muted mb-0">
+                            {% if p_class == "None" %}
+                                Your physiological metrics indicate healthy circadian equilibrium and normal sleep architecture.
+                            {% elif p_class == "Insomnia" %}
+                                Elevated risk patterns for sleep onset or sleep maintenance difficulties. Often associated with high nocturnal arousal or stress.
+                            {% else %}
+                                Elevated markers correlated with nocturnal airway obstruction and oxygen desaturation events. Medical evaluation is recommended.
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="col-md-5 text-md-end">
+                        <div class="bg-light p-3 rounded-3 border d-inline-block text-center w-100">
+                            <div class="small text-muted fw-semibold">Prediction Confidence</div>
+                            <div class="display-6 fw-bold text-{{ badge_class }}">{{ (assessment.confidence or 0.0)|round(1) }}%</div>
+                            <div class="small text-muted">Evaluated by <b>{{ assessment.model_name }}</b></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class Probabilities Bar -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-dark mb-2"><i class="fas fa-chart-pie text-primary me-2"></i> Multi-Class Probability Distribution</h6>
+                    <div class="progress mb-3" style="height: 22px; border-radius: 8px;">
+                        {% for c_name, prob in probabilities.items() %}
+                            {% set bar_color = "success" if c_name == "None" else ("warning" if c_name == "Insomnia" else "danger") %}
+                            <div class="progress-bar bg-{{ bar_color }} fw-semibold progress-bar-fill" data-width="{{ prob }}" style="width: 0%;" title="{{ c_name }}: {{ prob }}%">
+                                {% if prob > 12 %}{{ c_name }}: {{ prob }}%{% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <script>
+                    document.querySelectorAll('.progress-bar-fill').forEach(function(el) {
+                        el.style.width = el.getAttribute('data-width') + '%';
+                    });
+                    </script>
+                    <div class="row text-center small text-muted">
+                        {% for c_name, prob in probabilities.items() %}
+                        <div class="col-4">
+                            <span class="fw-bold text-dark">{{ c_name }}:</span> {{ prob }}%
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Action Navigation Grid -->
+                <div class="row g-3 pt-3 border-top">
+                    <div class="col-md-4">
+                        <a href="{{ url_for('prediction.explanation', id=assessment.id) }}" class="btn btn-outline-primary w-100 py-2 fw-semibold">
+                            <i class="fas fa-brain me-2"></i> View SHAP XAI
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ url_for('prediction.recommendations', id=assessment.id) }}" class="btn btn-outline-success w-100 py-2 fw-semibold">
+                            <i class="fas fa-sparkles me-2"></i> AI Recommendations
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ url_for('user.download_pdf', id=assessment.id) }}" class="btn btn-primary-custom w-100 py-2 fw-semibold">
+                            <i class="fas fa-file-pdf me-2"></i> Download PDF Report
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical Disclaimer Card -->
+            <div class="disclaimer-banner mb-4">
+                <h6 class="fw-bold mb-1"><i class="fas fa-stethoscope me-1"></i> Medical Decision-Support Disclaimer</h6>
+                <p class="small mb-0">
+                    This automated classification is generated using machine learning and is intended strictly for educational and preliminary screening purposes. It does not constitute a formal medical diagnosis or replace consultation with a physician or sleep specialist.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

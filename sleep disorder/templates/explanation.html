@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Explainable AI (SHAP) - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Header Card -->
+            <div class="custom-card p-4 bg-white mb-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-2">
+                    <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1">
+                        XAI (eXplainable Artificial Intelligence)
+                    </span>
+                    <a href="{{ url_for('prediction.result', id=assessment.id) }}" class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-1"></i> Back to Result
+                    </a>
+                </div>
+                <h2 class="fw-bold text-dark mb-1">Why Did the Model Make This Prediction?</h2>
+                <p class="text-muted small mb-0">
+                    Detailed breakdown of feature attributions for <b>{{ assessment.predicted_class }}</b> (Confidence: {{ (assessment.confidence or 0.0)|round(1) }}%) using Shapley Additive exPlanations (SHAP).
+                </p>
+            </div>
+
+            <!-- Natural Language Summary Box -->
+            <div class="bg-primary-subtle p-4 rounded-3 border border-primary-subtle mb-4">
+                <h5 class="fw-bold text-primary mb-2">
+                    <i class="fas fa-circle-info me-2"></i> Clinical Decision Context
+                </h5>
+                <p class="mb-0 text-dark">
+                    {{ shap_data.explanation_summary }}
+                </p>
+            </div>
+
+            <!-- SHAP Plot Card -->
+            <div class="custom-card p-4 bg-white mb-4 text-center">
+                <h5 class="fw-bold text-dark mb-3 text-start">
+                    <i class="fas fa-chart-bar text-primary me-2"></i> SHAP Feature Impact Chart
+                </h5>
+                <p class="small text-muted text-start mb-3">
+                    Red bars represent factors pushing the prediction <b>toward</b> {{ assessment.predicted_class }} (elevating risk), while teal bars represent protective factors pushing <b>away</b> from this class.
+                </p>
+                <div class="bg-light p-3 rounded-3 border d-inline-block w-100">
+                    <img src="data:image/png;base64,{{ shap_data.shap_plot_base64 }}" alt="SHAP Feature Influence Plot" class="img-fluid rounded shadow-sm" style="max-height: 460px;">
+                </div>
+            </div>
+
+            <!-- Top Factors Table -->
+            <div class="custom-card p-4 bg-white mb-4">
+                <h5 class="fw-bold text-dark mb-3">
+                    <i class="fas fa-list-ol text-primary me-2"></i> Top Contributing Factors Ranked by Magnitude
+                </h5>
+                <div class="table-responsive">
+                    <table class="table table-custom">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Clinical Feature</th>
+                                <th>SHAP Contribution Value</th>
+                                <th>Effect Direction</th>
+                                <th>Clinical Interpretation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for feat in shap_data.top_features %}
+                            <tr>
+                                <td class="fw-bold text-muted">{{ loop.index }}</td>
+                                <td class="fw-semibold text-dark">{{ feat.feature_name }}</td>
+                                <td class="font-monospace fw-bold">{{ "%+0.4f"|format(feat.shap_value) }}</td>
+                                <td>
+                                    {% if feat.direction == 'Positive' %}
+                                        <span class="badge bg-danger-subtle text-danger border border-danger px-2 py-1">
+                                            <i class="fas fa-arrow-trend-up me-1"></i> Increases Risk
+                                        </span>
+                                    {% elif feat.direction == 'Negative' %}
+                                        <span class="badge bg-success-subtle text-success border border-success px-2 py-1">
+                                            <i class="fas fa-shield-halved me-1"></i> Protective
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-secondary-subtle text-secondary px-2 py-1">Neutral</span>
+                                    {% endif %}
+                                </td>
+                                <td class="small text-muted">{{ feat.impact_description }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Next Step Buttons -->
+            <div class="d-flex flex-wrap gap-3 mb-4">
+                <a href="{{ url_for('prediction.recommendations', id=assessment.id) }}" class="btn btn-primary-custom flex-fill py-2">
+                    <i class="fas fa-sparkles me-2"></i> View AI Health Recommendations
+                </a>
+                <a href="{{ url_for('user.download_pdf', id=assessment.id) }}" class="btn btn-outline-success flex-fill py-2">
+                    <i class="fas fa-file-pdf me-2"></i> Download Full Clinical PDF Report
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

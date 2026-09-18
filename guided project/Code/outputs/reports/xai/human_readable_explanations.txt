@@ -1,0 +1,13 @@
+📋 TRANSACTION SUMMARY: Transaction TXN-SIM involving Customer C123456789 transferring $95,000.00 via TRANSFER to Beneficiary M987654321 on Unknown Proxy from Foreign Proxy.
+
+🔍 BEHAVIOUR ANALYSIS: Complete account balance drain: Sender balance wiped out from $95,000.00 to $0.00. High velocity anomaly: 8 transactions executed within the last 6 hours. Device anomaly: Payment initiated from unverified device profile ('Unknown Proxy'). Geographic anomaly: Payment originated from high-risk or foreign region ('Foreign Proxy').
+
+🚨 HIGH RISK INDICATORS: Elevated Transaction Amount: $95,000.00 exceeds single transfer threshold.; Sender Account Wipeout: Entire origin balance drained to zero.; Rapid Transaction Spike: 8 transfers within a 6-hour window.; Unverified Device Profile: Initiated via Unknown Proxy.; Suspicious Geographic Location: Access from Foreign Proxy.; Unestablished Beneficiary: No prior transfer history with recipient account.
+
+🟢 SAFE INDICATORS: None identified.
+
+📊 MODEL EXPLANATION: This transaction exhibits multiple elevated risk indicators (6 flags). Although calibrated scam probability is 0.00%, additional step-up verification is required before approval. Composite risk level: 'LOW'.
+
+💡 SHAP DRIVERS: Feature contributions align with baseline legitimate profile.
+
+🎯 FINAL RECOMMENDATION: Freeze Transaction, Notify Customer & Escalate to Fraud Operations: Multiple critical scam indicators triggered (High Amount, High Velocity, Unverified Proxy Access, Foreign Region & New Beneficiary). Payment frozen for SOC escalation.

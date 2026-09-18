@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}ML Model Benchmark Performance - SleepAI Admin{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge bg-danger text-white text-uppercase px-2 py-1">Administrator</span>
+                <h2 class="fw-bold text-dark mb-0">Machine Learning Benchmarks</h2>
+            </div>
+            <p class="text-muted small mb-0">Empirical comparative performance metrics across all 5 evaluated classification algorithms.</p>
+        </div>
+        <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+        </a>
+    </div>
+
+    <!-- Active Winner Model Banner -->
+    <div class="bg-success-subtle border border-success p-4 rounded-3 mb-4 d-flex justify-content-between align-items-center">
+        <div>
+            <span class="badge bg-success text-white mb-1"><i class="fas fa-trophy me-1"></i> Selected Champion Model</span>
+            <h4 class="fw-bold text-success mb-1">{{ metrics.get('best_model_name', 'Random Forest') }}</h4>
+            <p class="small text-muted mb-0">Selected via balanced <b>Macro F1-Score: {{ (metrics.get('best_f1_macro', 0) * 100)|round(2) }}%</b> to guarantee high sensitivity across minority disorder classes.</p>
+        </div>
+        <div class="text-end">
+            <span class="badge bg-white text-success border border-success fs-6 px-3 py-2">Production Active</span>
+        </div>
+    </div>
+
+    <!-- Models Comparison Table -->
+    <div class="custom-card p-4 bg-white mb-4">
+        <h5 class="fw-bold text-dark mb-3"><i class="fas fa-table-list text-primary me-2"></i> Comparative Evaluation Metrics (Hold-out Test Set & 5-Fold CV)</h5>
+        <div class="table-responsive">
+            <table class="table table-bordered table-custom">
+                <thead>
+                    <tr>
+                        <th>Algorithm</th>
+                        <th>Accuracy</th>
+                        <th>Precision (Macro)</th>
+                        <th>Recall (Macro)</th>
+                        <th>F1-Score (Macro)</th>
+                        <th>ROC-AUC (OVR)</th>
+                        <th>5-Fold CV F1 (Mean ± Std)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if metrics and metrics.get('models') %}
+                        {% for name, m in metrics['models'].items() %}
+                        <tr {% if name == metrics.get('best_model_name') %}class="table-success fw-bold"{% endif %}>
+                            <td>
+                                {% if name == metrics.get('best_model_name') %}
+                                    <i class="fas fa-crown text-warning me-1"></i>
+                                {% endif %}
+                                {{ name }}
+                            </td>
+                            <td>{{ (m.accuracy * 100)|round(2) }}%</td>
+                            <td>{{ m.precision_macro|round(4) }}</td>
+                            <td>{{ m.recall_macro|round(4) }}</td>
+                            <td>{{ m.f1_macro|round(4) }}</td>
+                            <td>{{ m.roc_auc|round(4) if m.roc_auc else 'N/A' }}</td>
+                            <td>{{ m.cv_f1_mean|round(3) }} (±{{ m.cv_f1_std|round(3) }})</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr><td colspan="7" class="text-center text-muted">No benchmark metrics loaded.</td></tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

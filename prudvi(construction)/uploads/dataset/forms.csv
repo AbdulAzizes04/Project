@@ -1,0 +1,5 @@
+form_id,project,form_type,zone,inspector,status,date,score_pct
+F-101,Villa Phase 3,Quality Checklist,3rd Floor Level 3,Clayton Miller,Passed,2026-07-28,98.0
+F-102,Villa Phase 3,3rd Plan Structural Inspection,Zone 3 - Master Suite,Clayton Miller,Failed Discrepancies,2026-08-01,68.5
+F-103,Villa Phase 3,Safety & PPE Inspection,Ground Level,Siddharth Verma,Passed,2026-08-02,100.0
+F-104,Villa Phase 3,MEP Ductwork Checklist,Zone 3B Corridor,Clayton Miller,Pending Action,2026-08-02,45.0

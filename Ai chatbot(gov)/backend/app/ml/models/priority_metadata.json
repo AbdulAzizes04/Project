@@ -1,0 +1,42 @@
+{
+  "model_name": "Priority Predictor",
+  "algorithm": "Gradient Boosting",
+  "accuracy": 1.0,
+  "train_accuracy": 1.0,
+  "f1_score": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "confusion_matrix": [
+    [
+      7,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      29,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      14,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      130
+    ]
+  ],
+  "label_names": [
+    "Critical",
+    "High",
+    "Low",
+    "Medium"
+  ],
+  "version": "1.0.0"
+}

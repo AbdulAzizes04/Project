@@ -1,0 +1,26 @@
+order_id,customer_name,category,product_name,sales,quantity,discount,profit,order_date,region
+ORD-1001,Alice Smith,Technology,MacBook Pro,1999.99,1,0.0,450.00,2024-01-15,East
+ORD-1002,Bob Jones,Furniture,Ergonomic Chair,299.50,2,0.1,50.00,2024-01-16,West
+ORD-1003,Charlie Brown,Office Supplies,Wireless Mouse,25.00,5,0.0,10.00,2024-01-18,Central
+ORD-1004,Diana Prince,Technology,4K Monitor,450.00,1,0.05,95.00,2024-01-20,South
+ORD-1005,Evan Wright,Furniture,Standing Desk,550.00,1,0.15,80.00,2024-01-22,East
+ORD-1006,Fiona Gallagher,Office Supplies,Mechanical Keyboard,120.00,2,0.0,35.00,2024-01-25,West
+ORD-1007,George Clark,Technology,Bluetooth Speaker,85.00,3,0.1,20.00,2024-01-28,Central
+ORD-1008,Hannah Abbott,Furniture,Bookshelf,180.00,1,0.0,40.00,2024-02-02,South
+ORD-1009,Ian Malcolm,Office Supplies,Paper Reams (10pk),45.00,4,0.0,15.00,2024-02-05,East
+ORD-1010,Julia Roberts,Technology,Noise Cancelling Headphones,300.00,1,0.1,75.00,2024-02-10,West
+ORD-1011,Kevin Bacon,Technology,Tablet 10-inch,350.00,2,0.05,60.00,2024-02-14,Central
+ORD-1012,Laura Croft,Furniture,Executive Desk,850.00,1,0.2,120.00,2024-02-18,South
+ORD-1013,Michael Scott,Office Supplies,Stapler Heavy Duty,18.50,3,0.0,5.50,2024-02-22,East
+ORD-1014,Nancy Wheeler,Technology,External SSD 1TB,130.00,2,0.0,40.00,2024-02-25,West
+ORD-1015,Oscar Martinez,Furniture,Desk Lamp LED,35.00,4,0.1,8.00,2024-03-01,Central
+ORD-1016,Pam Beesly,Office Supplies,Sticky Notes Pack,12.00,10,0.0,4.00,2024-03-05,South
+ORD-1017,Quentin Tarantino,Technology,Webcam 1080p,75.00,2,0.05,18.00,2024-03-08,East
+ORD-1018,Rachel Green,Furniture,Filing Cabinet,210.00,1,0.1,30.00,2024-03-12,West
+ORD-1019,Steve Rogers,Office Supplies,Binder Clips Box,8.00,15,0.0,2.50,2024-03-15,Central
+ORD-1020,Tony Stark,Technology,Smartwatch v2,299.00,3,0.0,110.00,2024-03-20,South
+ORD-1021,Uma Thurman,Furniture,Leather Recliner,650.00,1,0.15,90.00,2024-03-25,East
+ORD-1022,Victor Vance,Office Supplies,Gel Pens 24pk,22.00,5,0.0,7.00,2024-03-28,West
+ORD-1023,Wanda Maximoff,Technology,USB-C Docking Station,160.00,2,0.1,38.00,2024-04-02,Central
+ORD-1024,Xavier Charles,Furniture,Adjustable Footrest,40.00,2,0.0,12.00,2024-04-05,South
+ORD-1025,Yennefer Vengerberg,Office Supplies,Whiteboard 4x3,110.00,1,0.05,25.00,2024-04-10,East

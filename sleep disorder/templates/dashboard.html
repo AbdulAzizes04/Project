@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Welcome Header -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">Welcome, {{ user.name }}</h2>
+            <p class="text-muted mb-0">Overview of your sleep wellness screenings, risk indicators, and XAI records.</p>
+        </div>
+        <a href="{{ url_for('prediction.assessment') }}" class="btn btn-primary-custom shadow-sm">
+            <i class="fas fa-plus-circle me-1"></i> New Assessment
+        </a>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+                <div>
+                    <div class="small text-muted fw-semibold">Total Assessments</div>
+                    <h3 class="fw-bold mb-0 text-dark">{{ total_assessments }}</h3>
+                </div>
+                <div class="stat-icon bg-primary-subtle text-primary">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card {{ risk_color }}">
+                <div>
+                    <div class="small text-muted fw-semibold">Latest Result</div>
+                    <h4 class="fw-bold mb-0 text-dark">{{ latest_result }}</h4>
+                </div>
+                <div class="stat-icon bg-{{ risk_color }}-subtle text-{{ risk_color }}">
+                    <i class="fas fa-diagnoses"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card {{ risk_color }}">
+                <div>
+                    <div class="small text-muted fw-semibold">Current Risk</div>
+                    <div class="fw-bold text-{{ risk_color }} mb-0">{{ current_risk }}</div>
+                </div>
+                <div class="stat-icon bg-{{ risk_color }}-subtle text-{{ risk_color }}">
+                    <i class="fas fa-heart-pulse"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card info">
+                <div>
+                    <div class="small text-muted fw-semibold">Last Assessment</div>
+                    <div class="fw-bold text-dark mb-0">{{ latest_date }}</div>
+                </div>
+                <div class="stat-icon bg-info-subtle text-info">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Assessments Table -->
+    <div class="custom-card p-4 bg-white mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold text-dark mb-0"><i class="fas fa-clock-rotate-left text-primary me-2"></i> Recent Assessments</h5>
+            <a href="{{ url_for('user.history') }}" class="btn btn-sm btn-outline-secondary">View All</a>
+        </div>
+
+        {% if recent_assessments %}
+        <div class="table-responsive">
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Classification</th>
+                        <th>Confidence</th>
+                        <th>Model</th>
+                        <th>Top Influence</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in recent_assessments %}
+                    <tr>
+                        <td>{{ a.assessment_date.strftime('%b %d, %Y') }}</td>
+                        <td>
+                            {% if a.predicted_class == 'None' %}
+                                <span class="badge bg-success-subtle text-success border border-success px-2 py-1">No Disorder</span>
+                            {% elif a.predicted_class == 'Insomnia' %}
+                                <span class="badge bg-warning-subtle text-warning border border-warning px-2 py-1">Insomnia</span>
+                            {% else %}
+                                <span class="badge bg-danger-subtle text-danger border border-danger px-2 py-1">Sleep Apnea</span>
+                            {% endif %}
+                        </td>
+                        <td class="fw-semibold">{{ (a.confidence or 0.0)|round(1) }}%</td>
+                        <td class="small text-muted">{{ a.model_name }}</td>
+                        <td class="small text-dark">
+                            {% if a.explanations %}
+                                {{ a.explanations[0].feature_name }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ url_for('prediction.result', id=a.id) }}" class="btn btn-outline-primary" title="View Result">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ url_for('prediction.explanation', id=a.id) }}" class="btn btn-outline-secondary" title="SHAP XAI">
+                                    <i class="fas fa-brain"></i>
+                                </a>
+                                <a href="{{ url_for('user.download_pdf', id=a.id) }}" class="btn btn-outline-success" title="Download PDF">
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5 text-muted">
+            <i class="fas fa-notes-medical fa-3x mb-3 text-secondary"></i>
+            <h6>No assessments recorded yet.</h6>
+            <p class="small mb-3">Begin by completing your first sleep and lifestyle assessment.</p>
+            <a href="{{ url_for('prediction.assessment') }}" class="btn btn-primary-custom">
+                Start First Assessment
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

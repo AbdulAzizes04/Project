@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}About & Technical Architecture - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Header -->
+            <div class="mb-5 text-center">
+                <span class="badge bg-primary-subtle text-primary fw-semibold mb-2">Academic Final-Year Capstone Project</span>
+                <h1 class="fw-bold text-dark">An Explainable AI Framework for Intelligent Multi-Class Sleep Disorder Classification</h1>
+                <p class="lead text-muted">
+                    Technical Specifications, Machine Learning Formulations, and Decision Support Architecture.
+                </p>
+            </div>
+
+            <!-- Problem Statement -->
+            <div class="custom-card p-4 mb-4">
+                <h4 class="fw-bold text-primary mb-3"><i class="fas fa-bullseye me-2"></i> Problem Statement & Motivation</h4>
+                <p class="text-muted leading-relaxed">
+                    Sleep disorders such as <b>Insomnia</b> and <b>Obstructive Sleep Apnea (OSA)</b> are widespread medical conditions associated with severe downstream morbidities, including hypertension, coronary artery disease, stroke, metabolic dysfunction, and cognitive impairment. In clinical environments, formal diagnosis requires in-laboratory <i>Polysomnography (PSG)</i>, which is expensive, labor-intensive, and inaccessible for widespread screening.
+                </p>
+                <p class="text-muted mb-0">
+                    Existing machine learning systems operate as opaque "black boxes," issuing classification labels without clinical justification. This project presents a transparent, clinical decision-support framework that leverages <b>Stratified Multi-Model Machine Learning</b>, <b>SHAP (Shapley Additive exPlanations)</b>, and <b>Generative Health Guidance (Google Gemini)</b> to deliver interpretable, actionable sleep assessments.
+                </p>
+            </div>
+
+            <!-- Mathematical Formulation -->
+            <div class="custom-card p-4 mb-4">
+                <h4 class="fw-bold text-primary mb-3"><i class="fas fa-square-root-variable me-2"></i> Mathematical Foundations of SHAP</h4>
+                <p class="text-muted">
+                    SHAP utilizes cooperative game theory (Shapley values) to fairly distribute the prediction payout among input features:
+                </p>
+                <div class="bg-light p-3 rounded-3 border text-center font-monospace mb-3">
+                    &phi;<sub>i</sub>(x) = &sum;<sub>S &sube; F \ {i}</sub> &nbsp; [ |S|! (|F| - |S| - 1)! / |F|! ] &nbsp; [ f<sub>x</sub>(S &cup; {i}) - f<sub>x</sub>(S) ]
+                </div>
+                <p class="small text-muted mb-0">
+                    Where <b>F</b> is the total set of clinical features, <b>S</b> is a coalition subset of features excluding feature <i>i</i>, and <b>f<sub>x</sub>(S)</b> represents the model's expected prediction conditional on subset <i>S</i>. This guarantees local accuracy, missingness, and consistency.
+                </p>
+            </div>
+
+            <!-- Algorithms Benchmark Table -->
+            <div class="custom-card p-4 mb-4">
+                <h4 class="fw-bold text-primary mb-3"><i class="fas fa-chart-line me-2"></i> Model Comparison & Benchmark Results</h4>
+                <p class="text-muted small">
+                    All algorithms were trained on 80% stratified training data and evaluated on 20% held-out test data with 5-Fold Cross Validation.
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-custom">
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Test Accuracy</th>
+                                <th>Precision (Macro)</th>
+                                <th>Recall (Macro)</th>
+                                <th>F1-Score (Macro)</th>
+                                <th>ROC-AUC (OVR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-success fw-bold">
+                                <td><i class="fas fa-crown text-warning me-1"></i> Random Forest (Winner)</td>
+                                <td>93.33%</td>
+                                <td>0.9042</td>
+                                <td>0.9049</td>
+                                <td>0.9009</td>
+                                <td>0.9358</td>
+                            </tr>
+                            <tr>
+                                <td>Support Vector Machine (RBF)</td>
+                                <td>90.67%</td>
+                                <td>0.8770</td>
+                                <td>0.8751</td>
+                                <td>0.8675</td>
+                                <td>0.9575</td>
+                            </tr>
+                            <tr>
+                                <td>Decision Tree</td>
+                                <td>90.67%</td>
+                                <td>0.8654</td>
+                                <td>0.8751</td>
+                                <td>0.8653</td>
+                                <td>0.9085</td>
+                            </tr>
+                            <tr>
+                                <td>XGBoost</td>
+                                <td>90.67%</td>
+                                <td>0.8549</td>
+                                <td>0.8633</td>
+                                <td>0.8588</td>
+                                <td>0.9433</td>
+                            </tr>
+                            <tr>
+                                <td>Logistic Regression</td>
+                                <td>89.33%</td>
+                                <td>0.8683</td>
+                                <td>0.8822</td>
+                                <td>0.8663</td>
+                                <td>0.9490</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Ethical & Medical Disclaimer -->
+            <div class="disclaimer-banner mb-4">
+                <h5 class="fw-bold mb-2"><i class="fas fa-triangle-exclamation me-1"></i> Clinical Screening Disclaimer</h5>
+                <p class="mb-0">
+                    This software system is developed as an academic engineering research project for educational and preliminary screening demonstration purposes. It does not replace professional clinical evaluation, diagnostic polysomnography, or consultation with a certified medical physician or sleep specialist.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

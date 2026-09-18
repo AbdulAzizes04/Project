@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Portal Login - SleepAI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="custom-card p-4 p-md-5 bg-white border-top border-4 border-danger">
+                <div class="text-center mb-4">
+                    <div class="rounded-circle bg-danger-subtle text-danger mx-auto d-flex align-items-center justify-content-center mb-3" style="width: 56px; height: 56px;">
+                        <i class="fas fa-shield-halved fa-lg"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark">Admin Console</h3>
+                    <p class="text-muted small">Authorized clinical and administrative personnel only.</p>
+                </div>
+
+                <form method="POST" action="{{ url_for('admin.login') }}">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Admin Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="admin@sleepai.org" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" value="admin123" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger w-100 py-2 mb-3 fw-semibold">
+                        Enter Admin Portal <i class="fas fa-arrow-right ms-1"></i>
+                    </button>
+                </form>
+
+                <div class="text-center small text-muted">
+                    <a href="{{ url_for('auth.login') }}" class="text-secondary">Return to Patient Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
