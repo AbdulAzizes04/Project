@@ -1,0 +1,17 @@
+{
+  "pythonVersion": "3.11",
+  "extraPaths": [
+    "./career-recommendation-ai/backend",
+    "./career-recommendation-ai/ml",
+    "./career-recommendation-ai"
+  ],
+  "include": [
+    "career-recommendation-ai/backend",
+    "career-recommendation-ai/database",
+    "career-recommendation-ai/ml"
+  ],
+  "exclude": [
+    "**/__pycache__",
+    "**/node_modules"
+  ]
+}

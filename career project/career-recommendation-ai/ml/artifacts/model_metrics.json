@@ -1,0 +1,117 @@
+{
+  "model_name": "Logistic Regression",
+  "version": "20260923_145710",
+  "train_samples": 4200,
+  "test_samples": 1050,
+  "accuracy": 0.9857,
+  "precision": 0.9859,
+  "recall": 0.9857,
+  "f1_macro": 0.9857,
+  "confusion_matrix": [
+    [
+      149,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      148,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      6,
+      144,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      2,
+      148,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      150,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0,
+      148,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      148
+    ]
+  ],
+  "feature_importance": [],
+  "all_model_results": {
+    "Logistic Regression": {
+      "accuracy": 0.9857,
+      "precision": 0.9859,
+      "recall": 0.9857,
+      "f1_macro": 0.9857
+    },
+    "Random Forest": {
+      "accuracy": 0.9838,
+      "precision": 0.984,
+      "recall": 0.9838,
+      "f1_macro": 0.9839
+    },
+    "Gradient Boosting": {
+      "accuracy": 0.9781,
+      "precision": 0.9782,
+      "recall": 0.9781,
+      "f1_macro": 0.9781
+    },
+    "KNN": {
+      "accuracy": 0.979,
+      "precision": 0.9795,
+      "recall": 0.979,
+      "f1_macro": 0.9791
+    },
+    "XGBoost": {
+      "accuracy": 0.9819,
+      "precision": 0.982,
+      "recall": 0.9819,
+      "f1_macro": 0.9819
+    }
+  },
+  "label_map": {
+    "0": "Software Developer",
+    "1": "Data Analyst",
+    "2": "Data Scientist",
+    "3": "AI/ML Engineer",
+    "4": "Frontend Developer",
+    "5": "Backend Developer",
+    "6": "Cloud Engineer"
+  }
+}

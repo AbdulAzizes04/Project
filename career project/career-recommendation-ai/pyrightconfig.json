@@ -1,0 +1,16 @@
+{
+  "venvPath": ".",
+  "pythonVersion": "3.11",
+  "extraPaths": [
+    "./backend"
+  ],
+  "include": [
+    "backend",
+    "database",
+    "ml"
+  ],
+  "exclude": [
+    "**/__pycache__",
+    "**/artifacts"
+  ]
+}
